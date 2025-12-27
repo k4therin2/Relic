@@ -1,0 +1,101 @@
+version: '1.0'
+updated: '2025-12-27T01:30:00+00:00'
+updated_by: Agent-Anette
+summary:
+  total_milestones: 5
+  completed_milestones: 0
+  total_wps: 7
+  completed_wps: 5
+  in_progress_wps: 0
+  blocked_wps: 1
+  available_wps: 1
+  notes: "Setup batch nearly complete. Unity license activation blocks game development."
+batches:
+- id: EXT-1
+  name: Relic - Quick Start Setup
+  tag: EXTERNAL PROJECT
+  status: active
+  progress: 5/7
+  file: See agent-automation/plans/active/batch-ext-1.md
+milestones:
+- id: M1
+  name: Project and AR Tabletop Foundation
+  status: planned
+  blocked_by: WP-EXT-1.3 (Unity License)
+  progress: 0/4
+- id: M2
+  name: Core RTS Skeleton
+  status: planned
+  blocked_by: M1
+  progress: 0/4
+- id: M3
+  name: Combat and Upgrades
+  status: planned
+  blocked_by: M2
+  progress: 0/4
+- id: M4
+  name: Performance Optimization
+  status: planned
+  blocked_by: M3
+  progress: 0/4
+- id: M5
+  name: Scenarios and Polish
+  status: optional
+  blocked_by: M4
+  progress: 0/2
+current_work: []
+available_work:
+- wp: WP-EXT-1.3
+  title: Unity Environment Check (Blocked - License)
+  batch: EXT-1
+  priority: P0
+  complexity: S
+  for: Developer
+  notes: Unity installed but license activation requires GUI. See relic/DEVELOPMENT.md for options.
+blocked_work:
+- wp: RELIC-1.1
+  title: Unity Project Initialization
+  batch: M1
+  priority: P0
+  complexity: S
+  blocker: WP-EXT-1.3 (Unity License)
+  notes: Can't start until Unity license is activated
+recent_completions:
+- wp: WP-EXT-1.7
+  title: Relic CLI Tools & Scripts
+  agent: Nadia
+  date: '2025-12-26'
+  notes: config_validator.py, project_stats.py, build.py with 94 tests
+- wp: WP-EXT-1.6
+  title: Relic Test Planning
+  agent: Dorian
+  date: '2025-12-26'
+  notes: 650+ line TESTING.md with Unity test strategy
+- wp: WP-EXT-1.5
+  title: Relic Documentation Improvements
+  agent: Dorian
+  date: '2025-12-26'
+  notes: ARCHITECTURE.md, CODING_STANDARDS.md, README updates
+- wp: WP-EXT-1.4
+  title: Create Relic Project Config
+  agent: Dorian
+  date: '2025-12-26'
+  notes: Added to agent-automation tracking
+- wp: WP-EXT-1.2
+  title: Read Kyle's Requirements
+  agent: Dorian
+  date: '2025-12-26'
+  notes: IMPLEMENTATION_PLAN.md created
+- wp: WP-EXT-1.1
+  title: Fork & Clone Setup
+  agent: Dorian
+  date: '2025-12-26'
+  notes: Fork created, cloned, remotes configured
+project_info:
+  type: Unity Game (AR RTS)
+  platform: Meta Quest 3
+  client: Kyle (SomewhatRogue)
+  slack_channel: "#relic-game"
+  fork: k4therin2/Relic
+  upstream: SomewhatRogue/Relic
+  local_path: /home/k4therin2/projects/relic
