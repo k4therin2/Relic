@@ -35,53 +35,60 @@ git push origin main
 
 ## Unity Setup
 
-### Current Status
-**Unity is NOT yet installed on Colby.** Setup requires user action (see below).
+### Current Status (Updated 2025-12-27)
 
-### Requirements
-- Unity 6.3 LTS (Unity 6000.3.0f1) - latest LTS as of Dec 2025
-- Unity Hub for installation management
-- Ubuntu 22.04 or 24.04 (Colby has Ubuntu 24.04)
-- AR Foundation package
-- XR Interaction Toolkit package
-- Android build support (for Quest 3)
+**INSTALLED:**
+- ✅ Unity Hub AppImage: `~/UnityHub.AppImage`
+- ✅ Unity 6000.3.2f1 (6.3 LTS): `~/Unity/Hub/Editor/6000.3.2f1/`
+- ✅ Android Build Support
+- ✅ Android SDK & NDK Tools
+- ✅ OpenJDK
 
-### Installation Steps (User Action Required)
+**BLOCKED:**
+- ❌ Unity License needs activation (requires GUI interaction)
 
-1. **Download Unity Hub:**
-   ```bash
-   # Download the AppImage from https://unity.com/download
-   wget -O ~/UnityHub.AppImage "https://public-cdn.cloud.unity3d.com/hub/prod/UnityHub.AppImage"
-   chmod +x ~/UnityHub.AppImage
-   ~/UnityHub.AppImage
-   ```
+### License Activation (User Action Required)
 
-2. **Login to Unity Hub:**
-   - Launch Unity Hub
-   - Sign in with Unity account (or create one - Personal is free for <$200k revenue)
+Unity is installed but needs license activation. Since Colby is a headless server,
+you need GUI access to activate:
 
-3. **Install Unity 6.3 LTS:**
-   - In Unity Hub, go to Installs
-   - Click "Install Editor"
-   - Select Unity 6000.3.0f1 (LTS)
-   - Add these modules:
-     - Android Build Support
-     - Android SDK & NDK Tools
-     - OpenJDK
+**Option 1: SSH with X11 Forwarding (Recommended)**
+```bash
+# From your local machine with X11:
+ssh -X k4therin2@colby
+~/UnityHub.AppImage --no-sandbox
+# Sign in with Unity account in the Hub GUI
+```
 
-4. **Verify Installation:**
-   ```bash
-   # Check Unity is accessible
-   ls ~/Unity/Hub/Editor/*/Editor/Unity
-   ```
+**Option 2: VNC/Remote Desktop**
+- Use VNC or RDP to get graphical access to Colby
+- Run Unity Hub and sign in
 
-### After Installation
+**Option 3: Manual License File**
+- Activate Unity on another machine with same Unity ID
+- Copy `~/.config/unity3d/Unity/Unity_lic.ulf` to Colby
 
-Once Unity is installed, the agent team can:
-1. Open the Relic project
-2. Verify it loads without errors
-3. Run existing tests (if any)
-4. Begin RELIC-1 implementation batch
+### After License Activation
+
+Once licensed, verify with:
+```bash
+~/Unity/Hub/Editor/6000.3.2f1/Editor/Unity -batchmode -quit -nographics
+# Should exit cleanly without "No valid Unity Editor license" error
+```
+
+Then the agent team can:
+1. Create the initial Unity project (Kyle's upstream has only docs, no project yet)
+2. Set up AR Foundation and XR Interaction Toolkit
+3. Begin Milestone 1 implementation
+
+### Project State
+
+Note: Kyle's upstream repo (`SomewhatRogue/Relic`) currently only contains:
+- `README.md` - Project overview
+- `milestones.md` - Detailed roadmap and requirements
+
+The actual Unity project (Assets/, ProjectSettings/, etc.) needs to be created
+as part of Milestone 1.
 
 ## Project Documentation
 
