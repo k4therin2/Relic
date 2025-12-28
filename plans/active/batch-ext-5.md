@@ -130,10 +130,10 @@ Milestone 3 complete! Combat system, squad upgrades, and AI behavior are all wor
 ---
 
 ### WP-EXT-5.4: GPU Instancing and LOD
-**Status:** ⚪ Not Started
+**Status:** ⏸️ Parked (awaiting art assets)
 **Priority:** P1
 **Complexity:** M
-**Blocked by:** WP-EXT-5.3 (need tick manager first)
+**Blocked by:** Missing unit prefabs and art assets
 
 **Objective:** Enable GPU instancing for large unit counts and add LOD levels.
 
