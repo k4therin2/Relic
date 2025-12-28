@@ -278,7 +278,7 @@ namespace Relic.CoreRTS
         /// </summary>
         public void Stop()
         {
-            if (_navAgent != null && _navAgent.enabled)
+            if (_navAgent != null && _navAgent.enabled && _navAgent.isOnNavMesh)
             {
                 _navAgent.isStopped = true;
                 _navAgent.ResetPath();
