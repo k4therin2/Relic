@@ -1,8 +1,9 @@
 # Batch EXT-3: Milestone 2 - Core RTS Skeleton
 
 **Project:** Relic (Unity game - Kyle's repo fork)
-**Status:** active
+**Status:** complete
 **Created:** 2025-12-28
+**Completed:** 2025-12-28 (gardened by Henry)
 **Owner:** Henry (Project Manager)
 **Prerequisite:** Batch EXT-2 complete (M1: AR Tabletop Foundation delivered)
 

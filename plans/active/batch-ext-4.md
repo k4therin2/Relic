@@ -151,11 +151,11 @@ Milestone 2 is complete! Unit data architecture, movement system, selection syst
 ---
 
 ### WP-EXT-4.4: AI Behavior State Machine
-**Status:** Not Started
+**Status:** 🟡 In Progress
 **Priority:** P1
 **Complexity:** M
-**Agent:** Unassigned
-**Blocked by:** WP-EXT-4.3 (needs combat system)
+**Agent:** Agent-Anette
+**Blocked by:** ~~WP-EXT-4.3~~ (complete)
 
 **Objective:** Implement basic AI for enemy units.
 

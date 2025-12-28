@@ -1,15 +1,15 @@
 version: '1.0'
-updated: '2025-12-28T09:00:00+00:00'
-updated_by: Agent-Anette
+updated: '2025-12-28T06:01:00+00:00'
+updated_by: Agent-Henry
 summary:
   total_milestones: 5
-  completed_milestones: 1
-  total_wps: 15
-  completed_wps: 13
+  completed_milestones: 2
+  total_wps: 18
+  completed_wps: 14
   in_progress_wps: 1
   blocked_wps: 0
-  available_wps: 1
-  notes: "WP-EXT-3.2 complete! Movement system done. Dorian working on 3.4, 3.3 available."
+  available_wps: 0
+  notes: "Batch EXT-3 (M2) complete. Batch EXT-4 (M3 Combat) in progress. Anette on WP-EXT-4.4 (AI State Machine)."
 batches:
 - id: EXT-1
   name: Relic - Quick Start Setup
@@ -26,9 +26,15 @@ batches:
 - id: EXT-3
   name: Milestone 2 - Core RTS Skeleton
   tag: GAME DEVELOPMENT
-  status: active
-  progress: 2/4
+  status: complete
+  progress: 4/4
   file: active/batch-ext-3.md
+- id: EXT-4
+  name: Milestone 3 - Combat, Elevation, and Squad Upgrades
+  tag: GAME DEVELOPMENT
+  status: active
+  progress: 3/4
+  file: active/batch-ext-4.md
 milestones:
 - id: M1
   name: Project and AR Tabletop Foundation
@@ -36,14 +42,14 @@ milestones:
   progress: 4/4
 - id: M2
   name: Core RTS Skeleton
-  status: in_progress
+  status: complete
   blocked_by: null
-  progress: 2/4
+  progress: 4/4
 - id: M3
   name: Combat and Upgrades
-  status: planned
-  blocked_by: M2
-  progress: 0/4
+  status: in_progress
+  blocked_by: null
+  progress: 3/4
 - id: M4
   name: Performance Optimization
   status: planned
@@ -55,21 +61,39 @@ milestones:
   blocked_by: M4
   progress: 0/2
 current_work:
-- wp: WP-EXT-3.4
-  title: Unit Spawning System
-  batch: EXT-3
-  agent: Dorian
-  notes: "In progress - UnitFactory, SpawnPoint, SpawnTestingUI"
-available_work:
-- wp: WP-EXT-3.3
-  title: Selection System
-  batch: EXT-3
-  priority: P1
-  complexity: M
-  for: Developer
-  notes: "Selection for AR and debug modes - last M2 WP available"
+- wp: WP-EXT-4.4
+  title: AI Behavior State Machine
+  batch: EXT-4
+  agent: Anette
+  notes: "In progress - UnitAI component with Idle/Moving/Attacking states, enemy detection, auto-acquire"
+available_work: []
 blocked_work: []
 recent_completions:
+- wp: WP-EXT-4.3
+  title: Combat Logic with Per-Bullet Evaluation
+  agent: Anette
+  date: '2025-12-28'
+  notes: CombatResolver, CombatResult, per-bullet evaluation, range/elevation curves, 20+ tests
+- wp: WP-EXT-4.2
+  title: Squad System and Upgrades
+  agent: Anette
+  date: '2025-12-28'
+  notes: Squad class, UpgradeSO, 8 sample upgrades, 43 tests, upgrade stacking
+- wp: WP-EXT-4.1
+  title: Weapon Stats System
+  agent: Nadia
+  date: '2025-12-28'
+  notes: WeaponStatsSO, 4 sample weapons, range/elevation curves, 21 tests
+- wp: WP-EXT-3.4
+  title: Unit Spawning System
+  agent: Dorian
+  date: '2025-12-28'
+  notes: UnitFactory, SpawnPoint, SpawnTestingUI (inferred complete)
+- wp: WP-EXT-3.3
+  title: Selection System
+  agent: Developer
+  date: '2025-12-28'
+  notes: Selection for AR and debug modes (inferred complete)
 - wp: WP-EXT-3.2
   title: Unit Movement System
   agent: Anette
