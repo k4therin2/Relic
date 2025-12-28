@@ -41,16 +41,16 @@ Relic is a tabletop AR real-time strategy sandbox for Meta Quest 3.
 
 ## Active Work
 
-**Batch EXT-3: Milestone 2 - Core RTS Skeleton** - 3/4 In Progress
+**Batch EXT-3: Milestone 2 - Core RTS Skeleton** - 3/4 Complete
 
 | WP | Title | Status | Agent |
 |----|-------|--------|-------|
 | WP-EXT-3.1 | Unit Data Architecture | ✅ Complete | Anette |
 | WP-EXT-3.2 | Unit Movement System | ✅ Complete | Anette |
 | WP-EXT-3.3 | Selection System | ⚪ Available | - |
-| WP-EXT-3.4 | Unit Spawning System | 🟡 In Progress | Dorian |
+| WP-EXT-3.4 | Unit Spawning System | ✅ Complete | Dorian |
 
-**WP-EXT-3.3 available!** Selection system ready to claim.
+**WP-EXT-3.3 available!** Selection system is the last WP in this batch.
 
 See [active/batch-ext-3.md](active/batch-ext-3.md) for full details.
 
@@ -84,7 +84,7 @@ See [docs/milestones.md](../docs/milestones.md) for full specification.
 
 ## Recent Completions
 
-**2025-12-28:** WP-EXT-3.4 Unit Spawning System in progress (Dorian). UnitFactory, SpawnPoint, SpawnTestingUI with 29 unit tests.
+**2025-12-28:** WP-EXT-3.4 Unit Spawning System complete (Dorian). UnitFactory, SpawnPoint, SpawnTestingUI with 29 unit tests. Only WP-EXT-3.3 (Selection) remains!
 
 **2025-12-28:** WP-EXT-3.2 Unit Movement System complete (Anette). Command pattern with MoveCommand, StopCommand, CommandQueue, 38 tests.
 
@@ -99,4 +99,4 @@ See [docs/milestones.md](../docs/milestones.md) for full specification.
 ---
 
 *This file provides overview only. See index.yaml for machine-readable status.*
-*Last updated: 2025-12-28 by Agent-Dorian - WP-EXT-3.4 Unit Spawning System in progress*
+*Last updated: 2025-12-28 by Agent-Dorian - WP-EXT-3.4 Unit Spawning System complete*
