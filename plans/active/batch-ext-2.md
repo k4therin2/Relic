@@ -15,10 +15,10 @@ With Unity 6000.3.2f1 installed, licensed, and verified on Colby, game developme
 ## Work Packages
 
 ### WP-EXT-2.1: Unity Project Initialization
-**Status:** ⚪ Available
+**Status:** ✅ Complete (2025-12-28)
 **Priority:** P0 (blocking all other M1 work)
 **Complexity:** S
-**Assigned:** Unassigned
+**Assigned:** Agent-Dorian
 
 **Objective:** Create the Unity project structure and configure for Quest 3.
 
@@ -40,12 +40,20 @@ With Unity 6000.3.2f1 installed, licensed, and verified on Colby, game developme
 7. Commit to fork, create PR to upstream
 
 **Acceptance Criteria:**
-- [ ] Unity project opens without errors
-- [ ] Quest 3 build target configured
-- [ ] AR Foundation packages installed
-- [ ] Folder structure matches Kyle's spec
-- [ ] Can run test build (even if empty)
-- [ ] PR created and Kyle pinged in #relic-game
+- [x] Unity project opens without errors
+- [x] Quest 3 build target configured
+- [x] AR Foundation packages installed
+- [x] Folder structure matches Kyle's spec
+- [x] Can run test build (even if empty)
+- [x] PR created and Kyle pinged in #relic-game
+
+**Implementation Notes (Agent-Dorian):**
+- Project structure created with Unity 6000.3.2f1
+- Packages installed: AR Foundation 6.1.0, OpenXR 1.14.1, XR Management 4.5.0, XR Interaction Toolkit 3.0.7
+- Folder structure matches Kyle's spec: Scripts/{ARLayer,CoreRTS,UILayer,Core,Data}, Scenes, Prefabs, ScriptableObjects, Configs
+- Main.unity scene exists
+- Project opens and compiles successfully in batchmode
+- URP 17.0.3 configured for mobile rendering
 
 ---
 
