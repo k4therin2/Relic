@@ -6,7 +6,8 @@
         "UnityEditor.TestRunner",
         "Relic.Data",
         "Relic.Core",
-        "Relic.ARLayer"
+        "Relic.ARLayer",
+        "Relic.CoreRTS"
     ],
     "includePlatforms": [
         "Editor"

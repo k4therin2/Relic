@@ -4,6 +4,7 @@
     "references": [
         "Relic.Data",
         "Relic.Core",
+        "Relic.CoreRTS",
         "Relic.ARLayer",
         "Unity.XR.ARFoundation",
         "Unity.XR.CoreUtils"
