@@ -1,0 +1,252 @@
+# Batch EXT-5: Milestone 4 - AR UX, Large Battles, and Performance
+
+**Project:** Relic (Unity game - Kyle's repo fork)
+**Status:** planned (blocked by EXT-4)
+**Created:** 2025-12-28
+**Owner:** Henry (Project Manager)
+**Prerequisite:** Batch EXT-4 complete (M3: Combat, Elevation, Squad Upgrades)
+
+## Context
+
+Milestone 3 is in final stages (WP-EXT-4.4 AI State Machine in progress). Once complete, we move to performance optimization and AR UX improvements for large-scale battles.
+
+**Reference:** Kyle's requirements in `/home/k4therin2/projects/relic/docs/milestones.md`
+
+## Milestone 4 Objectives (from Kyle's spec)
+
+- Improve AR usability and feedback
+- Scale to large unit counts (goal: ~100 vs 100)
+- Profile and optimize performance
+
+---
+
+## Work Packages
+
+### WP-EXT-5.1: AR UX Enhancements
+**Status:** ⚪ Not Started
+**Priority:** P1
+**Complexity:** M
+**Blocked by:** WP-EXT-4.4 (AI State Machine)
+
+**Objective:** Improve AR interaction clarity and usability.
+
+**Tasks:**
+1. Implement clear selection circles/rings for selected units
+2. Add team color differentiation (Team 0 vs Team 1)
+3. Create move/attack destination indicators (waypoint markers)
+4. Implement multi-unit selection in AR mode (controller drag or area select)
+5. Add visual feedback for:
+   - Unit health (health bar or damage flash)
+   - Attack target lines (optional)
+   - Range indicators (optional)
+6. Write unit tests for UI components
+
+**Acceptance Criteria:**
+- [ ] Selection visually clear in AR
+- [ ] Team colors distinguishable
+- [ ] Move/attack commands have visual feedback
+- [ ] Multi-select works in AR mode
+
+---
+
+### WP-EXT-5.2: World-Space UI Panel
+**Status:** ⚪ Not Started
+**Priority:** P1
+**Complexity:** M
+**Blocked by:** WP-EXT-5.1
+
+**Objective:** Create in-world UI panel for spawning, era switching, and match control.
+
+**Tasks:**
+1. Create `WorldSpaceUIPanel` component:
+   - Anchored to battlefield (follows placement)
+   - Always faces player (billboard or fixed position)
+2. Implement UI sections:
+   - **Spawn Controls:** Select archetype, spawn unit/squad
+   - **Era Selector:** Switch between Ancient/Medieval/WWII/Future
+   - **Upgrade Panel:** Apply upgrades to selected squad
+   - **Match Controls:** Reset match, pause/resume
+3. Create UI prefabs using Unity UI (Canvas in World Space mode)
+4. Integrate with existing EraManager and Squad systems
+5. Write tests for UI interactions
+
+**Acceptance Criteria:**
+- [ ] World-space UI visible and readable in AR
+- [ ] Can spawn units from UI
+- [ ] Can switch eras from UI
+- [ ] Can apply upgrades from UI
+- [ ] Can reset match from UI
+
+---
+
+### WP-EXT-5.3: Central Tick Manager (Performance)
+**Status:** ⚪ Not Started
+**Priority:** P0 (critical for 100v100 scale)
+**Complexity:** M
+**Blocked by:** WP-EXT-4.4
+
+**Objective:** Replace per-unit Update() calls with centralized tick manager.
+
+**Tasks:**
+1. Create `TickManager` singleton:
+   - Maintains list of all tickable entities
+   - Calls tick methods in batched groups
+   - Configurable tick rate (e.g., AI ticks at 10Hz, not 60Hz)
+2. Create `ITickable` interface:
+   - `void OnTick(float deltaTime)`
+   - `TickPriority Priority { get; }`
+3. Refactor UnitController to use ITickable instead of Update()
+4. Refactor UnitAI to use ITickable (can run at lower frequency)
+5. Add performance profiling markers
+6. Write unit tests for tick registration and execution
+
+**Performance Target:** Reduce per-frame overhead by 50%+ with 100 units
+
+**Acceptance Criteria:**
+- [ ] TickManager centralizes unit updates
+- [ ] UnitController uses ITickable
+- [ ] UnitAI runs at configurable lower frequency
+- [ ] No per-unit Update() methods
+- [ ] Profiler shows reduced overhead
+
+---
+
+### WP-EXT-5.4: GPU Instancing and LOD
+**Status:** ⚪ Not Started
+**Priority:** P1
+**Complexity:** M
+**Blocked by:** WP-EXT-5.3 (need tick manager first)
+
+**Objective:** Enable GPU instancing for large unit counts and add LOD levels.
+
+**Tasks:**
+1. Enable GPU instancing on unit materials:
+   - Verify shaders support instancing
+   - Enable "GPU Instancing" checkbox on materials
+   - Use MaterialPropertyBlock for per-instance data (team color, etc.)
+2. Create LOD groups for unit prefabs:
+   - LOD0: Full detail (close)
+   - LOD1: Medium detail (mid-range)
+   - LOD2: Low detail or billboard (far)
+3. Create simple LOD meshes for existing unit types
+4. Configure LOD distances based on battlefield scale
+5. Profile draw call reduction
+
+**Performance Target:** Draw calls reduced by 60%+ with 100 units
+
+**Acceptance Criteria:**
+- [ ] GPU instancing enabled on unit materials
+- [ ] LOD groups configured on unit prefabs
+- [ ] Draw calls significantly reduced
+- [ ] Visual quality acceptable at all LOD levels
+
+---
+
+### WP-EXT-5.5: Unit Pooling
+**Status:** ⚪ Not Started
+**Priority:** P1
+**Complexity:** S
+**Blocked by:** WP-EXT-5.3
+
+**Objective:** Implement object pooling to reduce instantiation/destruction overhead.
+
+**Tasks:**
+1. Create `UnitPool` class:
+   - Pre-spawn pool of inactive unit GameObjects
+   - `Spawn(archetype, position, team)` returns pooled unit
+   - `Despawn(unit)` returns unit to pool
+   - Pool expansion when depleted
+2. Create pooling configuration:
+   - Initial pool size per archetype
+   - Max pool size
+   - Pool warm-up at scene load
+3. Integrate with UnitFactory:
+   - Replace Instantiate/Destroy with pool operations
+4. Handle squad cleanup when units return to pool
+5. Write unit tests for pool operations
+
+**Performance Target:** Zero runtime allocations for unit spawn/despawn
+
+**Acceptance Criteria:**
+- [ ] UnitPool manages unit lifecycle
+- [ ] UnitFactory uses pooling
+- [ ] No GC allocation spikes during battle
+- [ ] Pool correctly resets unit state on reuse
+
+---
+
+### WP-EXT-5.6: Performance Profiling and Validation
+**Status:** ⚪ Not Started
+**Priority:** P1
+**Complexity:** S
+**Blocked by:** WP-EXT-5.3, WP-EXT-5.4, WP-EXT-5.5
+
+**Objective:** Validate 100v100 performance target and identify remaining bottlenecks.
+
+**Tasks:**
+1. Create benchmark scene with 100 vs 100 units:
+   - Spawn 200 units in opposing teams
+   - Start combat automatically
+   - Run for 60 seconds
+2. Profile on Quest 3:
+   - CPU frame time (target: <16.6ms for 60fps)
+   - Draw calls (target: <100 batched calls)
+   - Memory allocation (target: 0 per-frame GC)
+   - Combat resolution time
+3. Profile in Editor (for comparison baseline)
+4. Document bottlenecks and optimization recommendations
+5. Create performance test that can run in CI
+
+**Acceptance Criteria:**
+- [ ] 100v100 battle runs at 60fps on Quest 3
+- [ ] Profile data documented
+- [ ] No major GC spikes during battle
+- [ ] Performance regression test exists
+
+---
+
+## Testing Strategy
+
+All WPs should have both:
+1. **EditMode tests** - Logic tests (TickManager registration, pool operations)
+2. **PlayMode tests** - Integration tests (UI interaction, pooling with spawns)
+
+Use existing test structure:
+- `Assets/Tests/EditMode/` for unit tests
+- `Assets/Tests/PlayMode/` for integration tests
+
+---
+
+## Notes
+
+**Client Communication:** Post to #relic-game when WPs complete or when creating PRs.
+
+**Performance Testing on Quest 3:**
+```bash
+# Build for Quest 3
+xvfb-run /home/k4therin2/Unity/Hub/Editor/6000.3.2f1/Editor/Unity \
+  -projectPath /home/k4therin2/projects/relic \
+  -buildTarget Android -executeMethod Build.BuildQuest3 -quit
+
+# Install to connected Quest
+adb install -r build/Relic-Quest.apk
+```
+
+**Dependencies:**
+- WP-EXT-5.1 can start immediately when M3 completes (no dependency on other M4 WPs)
+- WP-EXT-5.2 depends on 5.1 (uses selection/team UI foundation)
+- WP-EXT-5.3 can start immediately (performance infrastructure)
+- WP-EXT-5.4 depends on 5.3 (needs tick manager for instanced updates)
+- WP-EXT-5.5 depends on 5.3 (pooled units need tick registration)
+- WP-EXT-5.6 depends on 5.3, 5.4, 5.5 (validates all performance work)
+
+**Parallel Work Opportunities:**
+- WP-EXT-5.1 (UX) and WP-EXT-5.3 (Tick Manager) can be done in parallel
+- Two developers can work on M4 simultaneously
+
+**Next Batch:** EXT-6 (Milestone 5: Scenarios and Polish) - optional stretch goal
+
+---
+
+*Created: 2025-12-28 by Agent-Dorian*
+*Based on Kyle's Milestone 4 requirements in docs/milestones.md*

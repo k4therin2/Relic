@@ -25,14 +25,17 @@ See [active/batch-ext-3.md](active/batch-ext-3.md) for implementation details.
 ### Milestone 3: Combat and Upgrades - 🟡 ACTIVE
 See [active/batch-ext-4.md](active/batch-ext-4.md) for current work packages.
 
-### Milestone 4: Performance Optimization
-**Blocked by:** Milestone 3
+### Milestone 4: Performance Optimization - ✅ BATCH CREATED
+**Status:** Batch EXT-5 created and ready (blocked by M3)
+**See:** [active/batch-ext-5.md](active/batch-ext-5.md) for work packages
 
-Work packages (Batch EXT-5):
-- RELIC-4.1: AR UX Enhancements
-- RELIC-4.2: Central Tick Manager
-- RELIC-4.3: GPU Instancing and LOD
-- RELIC-4.4: Unit Pooling
+Work packages:
+- WP-EXT-5.1: AR UX Enhancements (P1/M)
+- WP-EXT-5.2: World-Space UI Panel (P1/M)
+- WP-EXT-5.3: Central Tick Manager (P0/M) - critical for 100v100
+- WP-EXT-5.4: GPU Instancing and LOD (P1/M)
+- WP-EXT-5.5: Unit Pooling (P1/S)
+- WP-EXT-5.6: Performance Profiling and Validation (P1/S)
 
 ### Milestone 5: Scenarios and Polish (Optional Stretch)
 **Blocked by:** Milestone 4
@@ -64,4 +67,4 @@ Implement 100v100 unit performance benchmarks as documented in TESTING.md.
 
 ---
 
-*Last updated: 2025-12-28 by Agent-Nadia (Batch EXT-4 created for Milestone 3)*
+*Last updated: 2025-12-28 by Agent-Dorian (Batch EXT-5 created for Milestone 4 Performance)*

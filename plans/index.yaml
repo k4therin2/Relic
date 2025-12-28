@@ -1,15 +1,15 @@
 version: '1.0'
-updated: '2025-12-28T06:01:00+00:00'
-updated_by: Agent-Henry
+updated: '2025-12-28T06:45:00+00:00'
+updated_by: Agent-Dorian
 summary:
   total_milestones: 5
   completed_milestones: 2
-  total_wps: 18
+  total_wps: 24
   completed_wps: 14
   in_progress_wps: 1
-  blocked_wps: 0
+  blocked_wps: 6
   available_wps: 0
-  notes: "Batch EXT-3 (M2) complete. Batch EXT-4 (M3 Combat) in progress. Anette on WP-EXT-4.4 (AI State Machine)."
+  notes: "M3 almost done (Anette on WP-EXT-4.4). Batch EXT-5 (M4 Performance) created and ready - 6 WPs blocked until M3 completes."
 batches:
 - id: EXT-1
   name: Relic - Quick Start Setup
@@ -35,6 +35,13 @@ batches:
   status: active
   progress: 3/4
   file: active/batch-ext-4.md
+- id: EXT-5
+  name: Milestone 4 - AR UX, Large Battles, and Performance
+  tag: GAME DEVELOPMENT
+  status: planned
+  progress: 0/6
+  blocked_by: EXT-4
+  file: active/batch-ext-5.md
 milestones:
 - id: M1
   name: Project and AR Tabletop Foundation
@@ -54,7 +61,7 @@ milestones:
   name: Performance Optimization
   status: planned
   blocked_by: M3
-  progress: 0/4
+  progress: 0/6
 - id: M5
   name: Scenarios and Polish
   status: optional
@@ -67,7 +74,43 @@ current_work:
   agent: Anette
   notes: "In progress - UnitAI component with Idle/Moving/Attacking states, enemy detection, auto-acquire"
 available_work: []
-blocked_work: []
+blocked_work:
+- wp: WP-EXT-5.1
+  title: AR UX Enhancements
+  batch: EXT-5
+  blocked_by: WP-EXT-4.4
+  priority: P1
+  complexity: M
+- wp: WP-EXT-5.2
+  title: World-Space UI Panel
+  batch: EXT-5
+  blocked_by: WP-EXT-5.1
+  priority: P1
+  complexity: M
+- wp: WP-EXT-5.3
+  title: Central Tick Manager
+  batch: EXT-5
+  blocked_by: WP-EXT-4.4
+  priority: P0
+  complexity: M
+- wp: WP-EXT-5.4
+  title: GPU Instancing and LOD
+  batch: EXT-5
+  blocked_by: WP-EXT-5.3
+  priority: P1
+  complexity: M
+- wp: WP-EXT-5.5
+  title: Unit Pooling
+  batch: EXT-5
+  blocked_by: WP-EXT-5.3
+  priority: P1
+  complexity: S
+- wp: WP-EXT-5.6
+  title: Performance Profiling and Validation
+  batch: EXT-5
+  blocked_by: WP-EXT-5.3, WP-EXT-5.4, WP-EXT-5.5
+  priority: P1
+  complexity: S
 recent_completions:
 - wp: WP-EXT-4.3
   title: Combat Logic with Per-Bullet Evaluation
@@ -170,6 +213,6 @@ project_info:
   unity_version: "6000.3.2f1 (6.3 LTS)"
   unity_license: "Personal (activated 2025-12-27)"
 next_steps:
-  notes: "3 WPs available: Movement (P1/M), Selection (P1/M), Spawning (P1/S). Claim any!"
-  priority: P1
-  blocked_by: null
+  notes: "Waiting for Anette to complete WP-EXT-4.4 (AI State Machine). Once done, 2 WPs unblock in parallel: WP-EXT-5.1 (AR UX) and WP-EXT-5.3 (Central Tick Manager - P0 priority)."
+  priority: P0
+  blocked_by: WP-EXT-4.4
