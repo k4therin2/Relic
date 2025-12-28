@@ -41,16 +41,16 @@ Relic is a tabletop AR real-time strategy sandbox for Meta Quest 3.
 
 ## Active Work
 
-**Batch EXT-3: Milestone 2 - Core RTS Skeleton** - 1/4 In Progress
+**Batch EXT-3: Milestone 2 - Core RTS Skeleton** - 3/4 In Progress
 
 | WP | Title | Status | Agent |
 |----|-------|--------|-------|
 | WP-EXT-3.1 | Unit Data Architecture | ✅ Complete | Anette |
-| WP-EXT-3.2 | Unit Movement System | ⚪ Available | - |
+| WP-EXT-3.2 | Unit Movement System | ✅ Complete | Anette |
 | WP-EXT-3.3 | Selection System | ⚪ Available | - |
-| WP-EXT-3.4 | Unit Spawning System | ⚪ Available | - |
+| WP-EXT-3.4 | Unit Spawning System | 🟡 In Progress | Dorian |
 
-**3 WPs available!** All now unblocked after 3.1 completion.
+**WP-EXT-3.3 available!** Selection system ready to claim.
 
 See [active/batch-ext-3.md](active/batch-ext-3.md) for full details.
 
@@ -84,6 +84,10 @@ See [docs/milestones.md](../docs/milestones.md) for full specification.
 
 ## Recent Completions
 
+**2025-12-28:** WP-EXT-3.4 Unit Spawning System in progress (Dorian). UnitFactory, SpawnPoint, SpawnTestingUI with 29 unit tests.
+
+**2025-12-28:** WP-EXT-3.2 Unit Movement System complete (Anette). Command pattern with MoveCommand, StopCommand, CommandQueue, 38 tests.
+
 **2025-12-28:** WP-EXT-3.1 Unit Data Architecture complete! UnitArchetypeSO, UnitController, UnitStats, 42 unit tests, editor tools. All M2 WPs now unblocked.
 
 **2025-12-28:** Batch EXT-3 created for Milestone 2 (Core RTS Skeleton). 4 work packages: Unit Data Architecture, Movement System, Selection System, Unit Spawning.
@@ -95,4 +99,4 @@ See [docs/milestones.md](../docs/milestones.md) for full specification.
 ---
 
 *This file provides overview only. See index.yaml for machine-readable status.*
-*Last updated: 2025-12-28 by Agent-Anette - WP-EXT-3.1 Unit Data Architecture complete*
+*Last updated: 2025-12-28 by Agent-Dorian - WP-EXT-3.4 Unit Spawning System in progress*

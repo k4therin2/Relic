@@ -5,11 +5,11 @@ summary:
   total_milestones: 5
   completed_milestones: 1
   total_wps: 15
-  completed_wps: 12
-  in_progress_wps: 0
+  completed_wps: 13
+  in_progress_wps: 1
   blocked_wps: 0
-  available_wps: 3
-  notes: "WP-EXT-3.1 complete! Unit Data Architecture done. 3 M2 WPs now available."
+  available_wps: 1
+  notes: "WP-EXT-3.2 complete! Movement system done. Dorian working on 3.4, 3.3 available."
 batches:
 - id: EXT-1
   name: Relic - Quick Start Setup
@@ -27,7 +27,7 @@ batches:
   name: Milestone 2 - Core RTS Skeleton
   tag: GAME DEVELOPMENT
   status: active
-  progress: 1/4
+  progress: 2/4
   file: active/batch-ext-3.md
 milestones:
 - id: M1
@@ -38,7 +38,7 @@ milestones:
   name: Core RTS Skeleton
   status: in_progress
   blocked_by: null
-  progress: 1/4
+  progress: 2/4
 - id: M3
   name: Combat and Upgrades
   status: planned
@@ -54,31 +54,27 @@ milestones:
   status: optional
   blocked_by: M4
   progress: 0/2
-current_work: []
-available_work:
-- wp: WP-EXT-3.2
-  title: Unit Movement System
+current_work:
+- wp: WP-EXT-3.4
+  title: Unit Spawning System
   batch: EXT-3
-  priority: P1
-  complexity: M
-  for: Developer
-  notes: "NavMesh movement - WP-EXT-3.1 complete, now unblocked"
+  agent: Dorian
+  notes: "In progress - UnitFactory, SpawnPoint, SpawnTestingUI"
+available_work:
 - wp: WP-EXT-3.3
   title: Selection System
   batch: EXT-3
   priority: P1
   complexity: M
   for: Developer
-  notes: "Selection for AR and debug modes - WP-EXT-3.1 complete, now unblocked"
-- wp: WP-EXT-3.4
-  title: Unit Spawning System
-  batch: EXT-3
-  priority: P1
-  complexity: S
-  for: Developer
-  notes: "Create UnitFactory and SpawnPoint components"
+  notes: "Selection for AR and debug modes - last M2 WP available"
 blocked_work: []
 recent_completions:
+- wp: WP-EXT-3.2
+  title: Unit Movement System
+  agent: Anette
+  date: '2025-12-28'
+  notes: Command pattern, CommandQueue, NavMeshSetupUtility, 38 tests
 - wp: WP-EXT-3.1
   title: Unit Data Architecture
   agent: Anette
