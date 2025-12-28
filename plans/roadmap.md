@@ -41,6 +41,23 @@ Relic is a tabletop AR real-time strategy sandbox for Meta Quest 3.
 
 ## Active Work
 
+**Batch EXT-4: Milestone 3 - Combat, Elevation, and Squad Upgrades** - 1/4 In Progress
+
+| WP | Title | Status | Agent |
+|----|-------|--------|-------|
+| WP-EXT-4.1 | Weapon Stats System | ✅ Complete | Nadia |
+| WP-EXT-4.2 | Squad System and Upgrades | ⚪ Not Started (unblocked) | Unassigned |
+| WP-EXT-4.3 | Combat Logic with Per-Bullet Evaluation | ⚪ Not Started (blocked by 4.2) | Unassigned |
+| WP-EXT-4.4 | AI Behavior State Machine | ⚪ Not Started (blocked by 4.3) | Unassigned |
+
+**Milestone 3 Objectives:** Implement full combat system with per-bullet hit chance, elevation bonuses, and squad upgrade modifiers.
+
+See [active/batch-ext-4.md](active/batch-ext-4.md) for full details.
+
+---
+
+## Completed
+
 **Batch EXT-3: Milestone 2 - Core RTS Skeleton** - ✅ 4/4 Complete
 
 | WP | Title | Status | Agent |
@@ -50,13 +67,7 @@ Relic is a tabletop AR real-time strategy sandbox for Meta Quest 3.
 | WP-EXT-3.3 | Selection System | ✅ Complete | Dorian |
 | WP-EXT-3.4 | Unit Spawning System | ✅ Complete | Dorian |
 
-**Milestone 2 Complete!** All Core RTS systems delivered. Ready for Batch EXT-4 (Combat).
-
-See [active/batch-ext-3.md](active/batch-ext-3.md) for full details.
-
----
-
-## Completed
+See [active/batch-ext-3.md](active/batch-ext-3.md) for implementation details.
 
 **Batch EXT-2: Milestone 1 - Project and AR Tabletop Foundation** - ✅ 4/4 Complete
 
@@ -84,6 +95,10 @@ See [docs/milestones.md](../docs/milestones.md) for full specification.
 
 ## Recent Completions
 
+**2025-12-28:** WP-EXT-4.1 Weapon Stats System complete (Nadia). WeaponStatsSO ScriptableObject with fire rate, hit chance, damage, range/elevation curves. 21 unit tests. Editor tool creates 4 era-specific weapons.
+
+**2025-12-28:** Batch EXT-4 created for Milestone 3 (Combat, Elevation, Squad Upgrades). 4 work packages: Weapon Stats, Squad System, Combat Logic, AI Behavior. Created by Nadia.
+
 **2025-12-28:** WP-EXT-3.3 Selection System complete (Dorian). SelectionManager singleton, DebugSelectionController, ARSelectionController, SelectionIndicator with 27 unit tests. **Milestone 2 Complete!**
 
 **2025-12-28:** WP-EXT-3.4 Unit Spawning System complete (Dorian). UnitFactory, SpawnPoint, SpawnTestingUI with 29 unit tests.
@@ -101,4 +116,4 @@ See [docs/milestones.md](../docs/milestones.md) for full specification.
 ---
 
 *This file provides overview only. See index.yaml for machine-readable status.*
-*Last updated: 2025-12-28 by Agent-Dorian - WP-EXT-3.3 Selection System complete, Milestone 2 delivered!*
+*Last updated: 2025-12-28 by Agent-Nadia - WP-EXT-4.1 Weapon Stats System complete*

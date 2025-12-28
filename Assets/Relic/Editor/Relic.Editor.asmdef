@@ -6,6 +6,7 @@
         "Relic.Core",
         "Relic.CoreRTS",
         "Relic.ARLayer",
+        "Relic.UILayer",
         "Unity.XR.ARFoundation",
         "Unity.XR.CoreUtils"
     ],

@@ -19,23 +19,11 @@ Unity 6000.3.2f1 (6.3 LTS) is now fully installed and licensed on Colby:
 
 ## Future Milestones (After M1)
 
-### Milestone 2: Core RTS Skeleton
-**Blocked by:** Milestone 1 (Batch EXT-2)
+### Milestone 2: Core RTS Skeleton - ✅ COMPLETE
+See [active/batch-ext-3.md](active/batch-ext-3.md) for implementation details.
 
-Work packages (Batch EXT-3):
-- RELIC-2.1: Unit Archetype System
-- RELIC-2.2: Unit Controller and Spawning
-- RELIC-2.3: Selection System
-- RELIC-2.4: Command System (Move/Stop)
-
-### Milestone 3: Combat and Upgrades
-**Blocked by:** Milestone 2
-
-Work packages (Batch EXT-4):
-- RELIC-3.1: Weapon Stats System
-- RELIC-3.2: Squad System and Upgrades
-- RELIC-3.3: Per-Bullet Combat (complex)
-- RELIC-3.4: AI States and Auto-Target
+### Milestone 3: Combat and Upgrades - 🟡 ACTIVE
+See [active/batch-ext-4.md](active/batch-ext-4.md) for current work packages.
 
 ### Milestone 4: Performance Optimization
 **Blocked by:** Milestone 3
@@ -76,4 +64,4 @@ Implement 100v100 unit performance benchmarks as documented in TESTING.md.
 
 ---
 
-*Last updated: 2025-12-28 by Agent-Henry (Unity now working, Batch EXT-2 created)*
+*Last updated: 2025-12-28 by Agent-Nadia (Batch EXT-4 created for Milestone 3)*

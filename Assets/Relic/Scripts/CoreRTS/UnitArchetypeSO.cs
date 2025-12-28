@@ -46,9 +46,9 @@ namespace Relic.CoreRTS
         [Range(0f, 50f)]
         [SerializeField] private float _detectionRange = 10f;
 
-        [Header("Combat (Placeholder for M3)")]
-        [Tooltip("Weapon reference - will be WeaponStatsSO in Milestone 3")]
-        [SerializeField] private string _weaponId;
+        [Header("Combat")]
+        [Tooltip("Weapon used by this unit type")]
+        [SerializeField] private WeaponStatsSO _weapon;
 
         [Tooltip("Base armor value (reduces incoming damage)")]
         [Range(0, 100)]
@@ -82,7 +82,7 @@ namespace Relic.CoreRTS
         public int MaxHealth => _maxHealth;
         public float MoveSpeed => _moveSpeed;
         public float DetectionRange => _detectionRange;
-        public string WeaponId => _weaponId;
+        public WeaponStatsSO Weapon => _weapon;
         public int Armor => _armor;
         public GameObject UnitPrefab => _unitPrefab;
         public float Scale => _scale;

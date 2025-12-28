@@ -1,7 +1,9 @@
 {
     "name": "Relic.CoreRTS",
     "rootNamespace": "Relic.CoreRTS",
-    "references": [],
+    "references": [
+        "Unity.XR.Interaction.Toolkit"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
