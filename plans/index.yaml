@@ -1,15 +1,15 @@
 version: '1.0'
-updated: '2025-12-28T03:30:00+00:00'
-updated_by: Agent-Anette
+updated: '2025-12-28T04:01:00+00:00'
+updated_by: Agent-Henry
 summary:
   total_milestones: 5
   completed_milestones: 0
   total_wps: 11
-  completed_wps: 8
-  in_progress_wps: 0
+  completed_wps: 9
+  in_progress_wps: 1
   blocked_wps: 0
-  available_wps: 3
-  notes: "WP-EXT-2.4 (Era Config) complete. M1 progress: 1/4."
+  available_wps: 1
+  notes: "WP-EXT-2.1 complete, WP-EXT-2.2 in progress (Dorian). M1 progress: 2/4."
 batches:
 - id: EXT-1
   name: Relic - Quick Start Setup
@@ -21,13 +21,13 @@ batches:
   name: Milestone 1 - Project and AR Tabletop Foundation
   tag: GAME DEVELOPMENT
   status: active
-  progress: 1/4
+  progress: 2/4
   file: active/batch-ext-2.md
 milestones:
 - id: M1
   name: Project and AR Tabletop Foundation
   status: active
-  progress: 1/4
+  progress: 2/4
 - id: M2
   name: Core RTS Skeleton
   status: planned
@@ -48,33 +48,30 @@ milestones:
   status: optional
   blocked_by: M4
   progress: 0/2
-current_work: []
-available_work:
-- wp: WP-EXT-2.1
-  title: Unity Project Initialization
-  batch: EXT-2
-  priority: P0
-  complexity: S
-  for: Developer
-  notes: "Create Unity project structure, configure for Quest 3, install AR packages"
+current_work:
 - wp: WP-EXT-2.2
   title: Scene Architecture
   batch: EXT-2
   priority: P1
   complexity: S
-  for: Developer
-  blocked_by: WP-EXT-2.1 (partial)
-  notes: "Create MainMenu, ARSession, BattlefieldSetup, Battle scenes"
+  agent: Dorian
+  claimed: '2025-12-28T03:54:00+00:00'
+  notes: "Creating scene loading system and 4 scenes"
+available_work:
 - wp: WP-EXT-2.3
   title: AR Battlefield Placement
   batch: EXT-2
   priority: P1
   complexity: M
   for: Developer
-  blocked_by: WP-EXT-2.1
   notes: "AR plane detection and tap-to-place battlefield"
 blocked_work: []
 recent_completions:
+- wp: WP-EXT-2.1
+  title: Unity Project Initialization
+  agent: Dorian
+  date: '2025-12-28'
+  notes: Unity 6000.3.2f1 project verified, Quest 3 configured, AR packages installed
 - wp: WP-EXT-2.4
   title: Era Configuration System
   agent: Anette
