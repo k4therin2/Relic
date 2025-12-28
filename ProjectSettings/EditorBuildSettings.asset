@@ -8,5 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Relic/Scenes/Main.unity
     guid: 8b2be8379a8b4464d85c1e0f6e8e3e3e
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 39078ac5ed8f089e3a1bb0bc579ac28d, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 931515d6177b2e83ebdc8e1347a34af1, type: 2}
   m_UseUCBPForAssetBundles: 0

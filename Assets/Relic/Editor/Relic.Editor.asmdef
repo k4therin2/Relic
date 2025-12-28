@@ -1,0 +1,21 @@
+{
+    "name": "Relic.Editor",
+    "rootNamespace": "Relic.Editor",
+    "references": [
+        "Relic.Data",
+        "Relic.Core",
+        "Unity.XR.ARFoundation",
+        "Unity.XR.CoreUtils"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
