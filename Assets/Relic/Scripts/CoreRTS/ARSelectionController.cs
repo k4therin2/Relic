@@ -172,12 +172,33 @@ namespace Relic.CoreRTS
             }
         }
 
-        // TODO: Stub for HandleBoxSelection - WP-EXT-5.1 feature (ARBoxSelection not yet implemented)
-        // This method will be fully implemented when ARBoxSelection class is created
         private void HandleBoxSelection()
         {
-            // Placeholder - implementation pending WP-EXT-5.1
-            // Will use ARBoxSelection component for drag-to-select in AR
+            if (!_enableBoxSelection || _boxSelection == null) return;
+
+            bool triggerPressed = _triggerWasPressed;
+
+            // Start box selection after hold time
+            if (triggerPressed && !_isBoxSelecting && _triggerHoldTime >= _boxSelectionHoldTime)
+            {
+                _isBoxSelecting = true;
+                _boxSelection.SetAddToSelection(_gripIsPressed);
+                _boxSelection.StartSelection(_triggerStartPoint);
+            }
+
+            // Update box selection while dragging
+            if (_isBoxSelecting)
+            {
+                Vector3 currentPoint = GetGroundPoint();
+                _boxSelection.UpdateSelection(currentPoint);
+
+                // End selection when trigger released
+                if (!triggerPressed)
+                {
+                    _boxSelection.EndSelection(apply: true);
+                    _isBoxSelecting = false;
+                }
+            }
         }
 
         private Vector3 GetGroundPoint()
