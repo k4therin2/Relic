@@ -1,15 +1,15 @@
 version: '1.0'
-updated: '2025-12-28T07:55:00+00:00'
-updated_by: Agent-Dorian
+updated: '2025-12-28T16:20:00+00:00'
+updated_by: Agent-Anette
 summary:
   total_milestones: 5
   completed_milestones: 3
   total_wps: 24
-  completed_wps: 18
+  completed_wps: 19
   in_progress_wps: 0
   blocked_wps: 2
-  available_wps: 1
-  notes: "M3 complete, M4 in progress. WP-EXT-5.3 (Tick Manager) and WP-EXT-5.5 (Unit Pooling) complete. WP-EXT-5.4 blocked on art assets. WP-EXT-5.2 available."
+  available_wps: 0
+  notes: "M3 complete, M4 4/6 done. WP-EXT-5.1, 5.2, 5.3, 5.5 complete. WP-EXT-5.4 blocked on art assets, WP-EXT-5.6 blocked on 5.4. No available work."
 batches:
 - id: EXT-1
   name: Relic - Quick Start Setup
@@ -39,7 +39,7 @@ batches:
   name: Milestone 4 - AR UX, Large Battles, and Performance
   tag: GAME DEVELOPMENT
   status: active
-  progress: 3/6
+  progress: 4/6
   file: active/batch-ext-5.md
 milestones:
 - id: M1
@@ -60,20 +60,14 @@ milestones:
   name: Performance Optimization
   status: in_progress
   blocked_by: null
-  progress: 3/6
+  progress: 4/6
 - id: M5
   name: Scenarios and Polish
   status: optional
   blocked_by: M4
   progress: 0/2
 current_work: []
-available_work:
-- wp: WP-EXT-5.2
-  title: World-Space UI Panel
-  batch: EXT-5
-  blocked_by: null
-  priority: P1
-  complexity: M
+available_work: []
 blocked_work:
 - wp: WP-EXT-5.4
   title: GPU Instancing and LOD
@@ -89,6 +83,11 @@ blocked_work:
   priority: P1
   complexity: S
 recent_completions:
+- wp: WP-EXT-5.2
+  title: World-Space UI Panel
+  agent: Nadia
+  date: '2025-12-28'
+  notes: WorldSpaceUIPanel component, 4 UI sections, era selector, upgrade panel, 27 tests
 - wp: WP-EXT-5.5
   title: Unit Pooling
   agent: Dorian
@@ -150,6 +149,6 @@ project_info:
   unity_version: "6000.3.2f1 (6.3 LTS)"
   unity_license: "Personal (activated 2025-12-27)"
 next_steps:
-  notes: "WP-EXT-5.2 (World-Space UI) available. WP-EXT-5.4 blocked on art assets (need unit prefabs/materials). User escalation may be needed for placeholder art."
+  notes: "M4 4/6 complete. WP-EXT-5.4 blocked on art assets from Kyle. WP-EXT-5.6 blocked on 5.4. No developer work available - escalate to Kyle for art assets or Henry for backlog promotion."
   priority: P1
-  blocked_by: null
+  blocked_by: "Art assets from Kyle"
