@@ -10,10 +10,11 @@ namespace Relic.CoreRTS
     /// </summary>
     /// <remarks>
     /// Attached to unit prefabs. Initialized from UnitArchetypeSO via UnitFactory.
+    /// Uses ITickable for centralized tick updates (performance optimization).
     /// See Kyle's milestones.md Milestone 2 for requirements.
     /// </remarks>
     [RequireComponent(typeof(Collider))]
-    public class UnitController : MonoBehaviour
+    public class UnitController : MonoBehaviour, ITickable
     {
         #region Serialized Fields
 
@@ -123,9 +124,42 @@ namespace Relic.CoreRTS
             {
                 Initialize(_archetype, _teamId);
             }
+
+            // Register with TickManager for centralized updates
+            if (TickManager.HasInstance || Application.isPlaying)
+            {
+                TickManager.Instance?.Register(this);
+            }
         }
 
-        private void Update()
+        private void OnDestroy()
+        {
+            // Unregister from TickManager
+            if (TickManager.HasInstance)
+            {
+                TickManager.Instance?.Unregister(this);
+            }
+        }
+
+        #endregion
+
+        #region ITickable Implementation
+
+        /// <summary>
+        /// Movement state checks run at Normal priority (~30 Hz).
+        /// </summary>
+        public TickPriority Priority => TickPriority.Normal;
+
+        /// <summary>
+        /// Tick is active when the unit is alive and moving.
+        /// </summary>
+        public bool IsTickActive => IsAlive && _currentState == UnitState.Moving;
+
+        /// <summary>
+        /// Called by TickManager to update movement state.
+        /// </summary>
+        /// <param name="deltaTime">Time since last tick.</param>
+        public void OnTick(float deltaTime)
         {
             // Check if movement has completed
             if (_currentState == UnitState.Moving && !IsMoving)

@@ -7,12 +7,13 @@ namespace Relic.CoreRTS
     /// <summary>
     /// Handles XR controller input for unit selection in AR mode.
     /// Supports trigger-to-select, grip for add-to-selection,
-    /// and raycast to battlefield for move commands.
+    /// box/drag selection for multi-select, and raycast to battlefield for move commands.
     /// </summary>
     /// <remarks>
     /// Attach to the XR controller in the AR scene.
     /// Requires SelectionManager to be present in the scene.
-    /// See Kyle's milestones.md Milestone 2 for requirements.
+    /// Updated for WP-EXT-5.1: Added box selection and destination markers.
+    /// See Kyle's milestones.md Milestone 2/4 for requirements.
     /// </remarks>
     public class ARSelectionController : MonoBehaviour
     {
@@ -39,6 +40,17 @@ namespace Relic.CoreRTS
         [Tooltip("Input action name for add-to-selection (grip)")]
         [SerializeField] private string _addToSelectionActionName = "grip";
 
+        [Header("Box Selection")]
+        [Tooltip("Enable box/drag selection")]
+        [SerializeField] private bool _enableBoxSelection = true;
+
+        [Tooltip("Minimum trigger hold time to start box selection (seconds)")]
+        [SerializeField] private float _boxSelectionHoldTime = 0.3f;
+
+        [Header("Destination Markers")]
+        [Tooltip("Show destination markers when issuing move commands")]
+        [SerializeField] private bool _showDestinationMarkers = true;
+
         #endregion
 
         #region Runtime State
@@ -47,6 +59,11 @@ namespace Relic.CoreRTS
         private bool _triggerWasPressed;
         private bool _gripIsPressed;
         private InputDevice _controller;
+        private ARBoxSelection _boxSelection;
+        private DestinationMarkerManager _markerManager;
+        private float _triggerHoldTime;
+        private Vector3 _triggerStartPoint;
+        private bool _isBoxSelecting;
 
         #endregion
 
@@ -60,6 +77,19 @@ namespace Relic.CoreRTS
                 Debug.LogWarning("[ARSelectionController] SelectionManager not found.");
             }
 
+            // Initialize box selection component
+            if (_enableBoxSelection)
+            {
+                _boxSelection = GetComponent<ARBoxSelection>();
+                if (_boxSelection == null)
+                {
+                    _boxSelection = gameObject.AddComponent<ARBoxSelection>();
+                }
+            }
+
+            // Get destination marker manager
+            _markerManager = DestinationMarkerManager.Instance;
+
             InitializeController();
         }
 
@@ -69,6 +99,8 @@ namespace Relic.CoreRTS
 
             UpdateControllerState();
             HandleControllerInput();
+            // TODO: HandleBoxSelection() - WP-EXT-5.1 feature
+            // HandleBoxSelection();
         }
 
         #endregion
@@ -106,10 +138,28 @@ namespace Relic.CoreRTS
             bool triggerPressed;
             _controller.TryGetFeatureValue(CommonUsages.triggerButton, out triggerPressed);
 
-            // Trigger pressed - select
-            if (triggerPressed && !_triggerWasPressed)
+            // Track trigger hold time for box selection
+            if (triggerPressed)
             {
-                PerformSelection();
+                if (!_triggerWasPressed)
+                {
+                    // Just pressed - record start point
+                    _triggerHoldTime = 0f;
+                    _triggerStartPoint = GetGroundPoint();
+                }
+                else
+                {
+                    _triggerHoldTime += Time.deltaTime;
+                }
+            }
+            else if (_triggerWasPressed)
+            {
+                // Trigger released
+                if (!_isBoxSelecting)
+                {
+                    // Quick click - single unit selection
+                    PerformSelection();
+                }
             }
 
             _triggerWasPressed = triggerPressed;
@@ -120,6 +170,33 @@ namespace Relic.CoreRTS
             {
                 PerformMoveCommand();
             }
+        }
+
+        // TODO: Stub for HandleBoxSelection - WP-EXT-5.1 feature (ARBoxSelection not yet implemented)
+        // This method will be fully implemented when ARBoxSelection class is created
+        private void HandleBoxSelection()
+        {
+            // Placeholder - implementation pending WP-EXT-5.1
+            // Will use ARBoxSelection component for drag-to-select in AR
+        }
+
+        private Vector3 GetGroundPoint()
+        {
+            RaycastHit hit;
+
+            if (_rayInteractor != null && _rayInteractor.TryGetCurrent3DRaycastHit(out hit))
+            {
+                return hit.point;
+            }
+
+            // Fallback to manual raycast
+            Ray ray = new Ray(transform.position, transform.forward);
+            if (Physics.Raycast(ray, out hit, 100f, _groundLayerMask))
+            {
+                return hit.point;
+            }
+
+            return transform.position + transform.forward * 10f;
         }
 
         #endregion
@@ -205,6 +282,12 @@ namespace Relic.CoreRTS
                 if ((_groundLayerMask.value & (1 << hit.collider.gameObject.layer)) != 0)
                 {
                     _selectionManager.CommandSelectedToMove(hit.point);
+
+                    // Show destination marker
+                    if (_showDestinationMarkers && _markerManager != null)
+                    {
+                        _markerManager.ShowMoveMarker(hit.point);
+                    }
                 }
             }
         }

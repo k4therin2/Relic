@@ -1,14 +1,14 @@
 # Batch EXT-5: Milestone 4 - AR UX, Large Battles, and Performance
 
 **Project:** Relic (Unity game - Kyle's repo fork)
-**Status:** planned (blocked by EXT-4)
+**Status:** active
 **Created:** 2025-12-28
 **Owner:** Henry (Project Manager)
-**Prerequisite:** Batch EXT-4 complete (M3: Combat, Elevation, Squad Upgrades)
+**Prerequisite:** ~~Batch EXT-4 complete~~ (M3: Combat complete 2025-12-28)
 
 ## Context
 
-Milestone 3 is in final stages (WP-EXT-4.4 AI State Machine in progress). Once complete, we move to performance optimization and AR UX improvements for large-scale battles.
+Milestone 3 complete! Combat system, squad upgrades, and AI behavior are all working. Now we move to performance optimization and AR UX improvements for large-scale battles.
 
 **Reference:** Kyle's requirements in `/home/k4therin2/projects/relic/docs/milestones.md`
 
@@ -23,10 +23,12 @@ Milestone 3 is in final stages (WP-EXT-4.4 AI State Machine in progress). Once c
 ## Work Packages
 
 ### WP-EXT-5.1: AR UX Enhancements
-**Status:** ⚪ Not Started
+**Status:** 🟡 In Progress
 **Priority:** P1
 **Complexity:** M
-**Blocked by:** WP-EXT-4.4 (AI State Machine)
+**Agent:** Agent-Anette
+**Started:** 2025-12-28
+**Blocked by:** ~~WP-EXT-4.4~~ (complete)
 
 **Objective:** Improve AR interaction clarity and usability.
 
@@ -80,10 +82,11 @@ Milestone 3 is in final stages (WP-EXT-4.4 AI State Machine in progress). Once c
 ---
 
 ### WP-EXT-5.3: Central Tick Manager (Performance)
-**Status:** ⚪ Not Started
+**Status:** 🟡 In Progress
 **Priority:** P0 (critical for 100v100 scale)
 **Complexity:** M
-**Blocked by:** WP-EXT-4.4
+**Agent:** Agent-Dorian
+**Blocked by:** ~~WP-EXT-4.4~~ (complete)
 
 **Objective:** Replace per-unit Update() calls with centralized tick manager.
 

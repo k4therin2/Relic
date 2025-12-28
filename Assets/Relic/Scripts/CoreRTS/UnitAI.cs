@@ -10,10 +10,11 @@ namespace Relic.CoreRTS
     /// </summary>
     /// <remarks>
     /// Attach to unit prefabs alongside UnitController.
+    /// Uses ITickable for centralized tick updates at Medium priority (10 Hz).
     /// See Kyle's milestones.md Milestone 3 for AI requirements.
     /// </remarks>
     [RequireComponent(typeof(UnitController))]
-    public class UnitAI : MonoBehaviour
+    public class UnitAI : MonoBehaviour, ITickable
     {
         #region Constants
 
@@ -117,9 +118,45 @@ namespace Relic.CoreRTS
             _unitController = GetComponent<UnitController>();
         }
 
-        private void Update()
+        private void Start()
         {
-            if (!_isAIEnabled || _unitController == null || !_unitController.IsAlive)
+            // Register with TickManager for centralized AI updates
+            if (TickManager.HasInstance || Application.isPlaying)
+            {
+                TickManager.Instance?.Register(this);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            // Unregister from TickManager
+            if (TickManager.HasInstance)
+            {
+                TickManager.Instance?.Unregister(this);
+            }
+        }
+
+        #endregion
+
+        #region ITickable Implementation
+
+        /// <summary>
+        /// AI runs at Medium priority (10 Hz) - good balance between responsiveness and performance.
+        /// </summary>
+        public TickPriority Priority => TickPriority.Medium;
+
+        /// <summary>
+        /// Tick is active when AI is enabled and unit is alive.
+        /// </summary>
+        public bool IsTickActive => _isAIEnabled && _unitController != null && _unitController.IsAlive;
+
+        /// <summary>
+        /// Called by TickManager to update AI state machine.
+        /// </summary>
+        /// <param name="deltaTime">Time since last tick.</param>
+        public void OnTick(float deltaTime)
+        {
+            if (!IsTickActive)
                 return;
 
             // Run state-specific update
