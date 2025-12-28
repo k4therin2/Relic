@@ -1,16 +1,14 @@
 {
-    "name": "Relic.Editor",
-    "rootNamespace": "Relic.Editor",
+    "name": "Relic.ARLayer",
+    "rootNamespace": "Relic.ARLayer",
     "references": [
-        "Relic.Data",
         "Relic.Core",
-        "Relic.ARLayer",
+        "Relic.Data",
         "Unity.XR.ARFoundation",
+        "Unity.XR.ARSubsystems",
         "Unity.XR.CoreUtils"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

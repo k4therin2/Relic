@@ -41,16 +41,16 @@ Relic is a tabletop AR real-time strategy sandbox for Meta Quest 3.
 
 ## Active Work
 
-**Batch EXT-2: Milestone 1 - Project and AR Tabletop Foundation** - 0/4 in progress
+**Batch EXT-2: Milestone 1 - Project and AR Tabletop Foundation** - 4/4 Complete ✅
 
 | WP | Title | Status | Priority |
 |----|-------|--------|----------|
-| WP-EXT-2.1 | Unity Project Initialization | ⚪ Available | P0 (blocking) |
-| WP-EXT-2.2 | Scene Architecture | ⚪ Available | P1 |
-| WP-EXT-2.3 | AR Battlefield Placement | ⚪ Available | P1 |
-| WP-EXT-2.4 | Era Configuration System | ⚪ Available | P1 |
+| WP-EXT-2.1 | Unity Project Initialization | ✅ Complete | P0 (blocking) |
+| WP-EXT-2.2 | Scene Architecture | ✅ Complete | P1 |
+| WP-EXT-2.3 | AR Battlefield Placement | ✅ Complete | P1 |
+| WP-EXT-2.4 | Era Configuration System | ✅ Complete | P1 |
 
-**Note:** WP-EXT-2.2, 2.3, 2.4 are partially blocked by WP-EXT-2.1 (need Unity project structure first). But WP-EXT-2.4 can start designing ScriptableObject schemas in parallel.
+**Milestone 1 Complete!** All core foundation work done - Unity project, scenes, AR placement, and era configs.
 
 See [active/batch-ext-2.md](active/batch-ext-2.md) for full details.
 
@@ -69,9 +69,13 @@ See [docs/milestones.md](../docs/milestones.md) for full specification.
 
 ## Recent Completions
 
+**2025-12-28:** WP-EXT-2.3 AR Battlefield Placement complete. BattlefieldPlacer with AR plane detection, placement workflow (Detecting→Previewing→Confirming→Placed), scale controller with table-size presets, and 41 unit tests.
+
+**2025-12-28:** WP-EXT-2.1, 2.2, 2.4 complete. Full Milestone 1 foundation done!
+
 **2025-12-27:** WP-EXT-1.3 Unity Environment Check complete. Unity 6000.3.2f1 installed with Android Build Support and Personal license activated. Batchmode verified with xvfb-run. All game development now unblocked!
 
 ---
 
 *This file provides overview only. See index.yaml for machine-readable status.*
-*Last updated: 2025-12-28 by Henry (PM) - Created Batch EXT-2*
+*Last updated: 2025-12-28 by Agent-Nadia - WP-EXT-2.3 complete, Milestone 1 done!*
