@@ -1,15 +1,15 @@
 version: '1.0'
-updated: '2025-12-28T06:45:00+00:00'
+updated: '2025-12-28T07:55:00+00:00'
 updated_by: Agent-Dorian
 summary:
   total_milestones: 5
-  completed_milestones: 2
+  completed_milestones: 3
   total_wps: 24
-  completed_wps: 14
-  in_progress_wps: 1
-  blocked_wps: 6
-  available_wps: 0
-  notes: "M3 almost done (Anette on WP-EXT-4.4). Batch EXT-5 (M4 Performance) created and ready - 6 WPs blocked until M3 completes."
+  completed_wps: 18
+  in_progress_wps: 0
+  blocked_wps: 3
+  available_wps: 1
+  notes: "M3 complete, M4 in progress. WP-EXT-5.3 (Tick Manager) and WP-EXT-5.5 (Unit Pooling) complete. WP-EXT-5.4 and WP-EXT-5.2 available."
 batches:
 - id: EXT-1
   name: Relic - Quick Start Setup
@@ -32,15 +32,14 @@ batches:
 - id: EXT-4
   name: Milestone 3 - Combat, Elevation, and Squad Upgrades
   tag: GAME DEVELOPMENT
-  status: active
-  progress: 3/4
+  status: complete
+  progress: 4/4
   file: active/batch-ext-4.md
 - id: EXT-5
   name: Milestone 4 - AR UX, Large Battles, and Performance
   tag: GAME DEVELOPMENT
-  status: planned
-  progress: 0/6
-  blocked_by: EXT-4
+  status: active
+  progress: 3/6
   file: active/batch-ext-5.md
 milestones:
 - id: M1
@@ -54,64 +53,61 @@ milestones:
   progress: 4/4
 - id: M3
   name: Combat and Upgrades
-  status: in_progress
+  status: complete
   blocked_by: null
-  progress: 3/4
+  progress: 4/4
 - id: M4
   name: Performance Optimization
-  status: planned
-  blocked_by: M3
-  progress: 0/6
+  status: in_progress
+  blocked_by: null
+  progress: 3/6
 - id: M5
   name: Scenarios and Polish
   status: optional
   blocked_by: M4
   progress: 0/2
-current_work:
-- wp: WP-EXT-4.4
-  title: AI Behavior State Machine
-  batch: EXT-4
-  agent: Anette
-  notes: "In progress - UnitAI component with Idle/Moving/Attacking states, enemy detection, auto-acquire"
-available_work: []
-blocked_work:
-- wp: WP-EXT-5.1
-  title: AR UX Enhancements
-  batch: EXT-5
-  blocked_by: WP-EXT-4.4
-  priority: P1
-  complexity: M
+current_work: []
+available_work:
 - wp: WP-EXT-5.2
   title: World-Space UI Panel
   batch: EXT-5
-  blocked_by: WP-EXT-5.1
+  blocked_by: null
   priority: P1
-  complexity: M
-- wp: WP-EXT-5.3
-  title: Central Tick Manager
-  batch: EXT-5
-  blocked_by: WP-EXT-4.4
-  priority: P0
   complexity: M
 - wp: WP-EXT-5.4
   title: GPU Instancing and LOD
   batch: EXT-5
-  blocked_by: WP-EXT-5.3
+  blocked_by: null
   priority: P1
   complexity: M
-- wp: WP-EXT-5.5
-  title: Unit Pooling
-  batch: EXT-5
-  blocked_by: WP-EXT-5.3
-  priority: P1
-  complexity: S
+blocked_work:
 - wp: WP-EXT-5.6
   title: Performance Profiling and Validation
   batch: EXT-5
-  blocked_by: WP-EXT-5.3, WP-EXT-5.4, WP-EXT-5.5
+  blocked_by: WP-EXT-5.4
   priority: P1
   complexity: S
 recent_completions:
+- wp: WP-EXT-5.5
+  title: Unit Pooling
+  agent: Dorian
+  date: '2025-12-28'
+  notes: UnitPool class, Spawn/Despawn, WarmUp, squad cleanup, 26 tests, UnitFactory integration
+- wp: WP-EXT-5.3
+  title: Central Tick Manager
+  agent: Dorian
+  date: '2025-12-28'
+  notes: TickManager singleton, ITickable interface, priority-based tick rates, 19 tests
+- wp: WP-EXT-5.1
+  title: AR UX Enhancements
+  agent: Anette
+  date: '2025-12-28'
+  notes: TeamColorApplier, DestinationMarker, HealthBar, ARBoxSelection, 4 test files
+- wp: WP-EXT-4.4
+  title: AI Behavior State Machine
+  agent: Anette, Dorian
+  date: '2025-12-28'
+  notes: UnitAI with Idle/Moving/Attacking states, enemy detection, 23 tests
 - wp: WP-EXT-4.3
   title: Combat Logic with Per-Bullet Evaluation
   agent: Anette
@@ -142,66 +138,6 @@ recent_completions:
   agent: Anette
   date: '2025-12-28'
   notes: Command pattern, CommandQueue, NavMeshSetupUtility, 38 tests
-- wp: WP-EXT-3.1
-  title: Unit Data Architecture
-  agent: Anette
-  date: '2025-12-28'
-  notes: UnitArchetypeSO, UnitController, UnitStats, 42 tests, editor tools
-- wp: WP-EXT-2.3
-  title: AR Battlefield Placement
-  agent: Nadia
-  date: '2025-12-28'
-  notes: BattlefieldPlacer, ScaleController, placement preview, 41 unit tests
-- wp: WP-EXT-2.2
-  title: Scene Architecture
-  agent: Dorian
-  date: '2025-12-28'
-  notes: SceneLoader, 4 scenes (MainMenu/ARSession/BattlefieldSetup/Battle), navigation system
-- wp: WP-EXT-2.4
-  title: Era Configuration System
-  agent: Anette
-  date: '2025-12-28'
-  notes: EraConfigSO, EraManager, EraSelectionUI, 4 era configs, 20+ tests
-- wp: WP-EXT-2.1
-  title: Unity Project Initialization
-  agent: Dorian
-  date: '2025-12-28'
-  notes: Unity 6000.3.2f1 project verified, Quest 3 configured, AR packages installed
-- wp: WP-EXT-1.3
-  title: Unity Environment Check
-  agent: Interactive + User
-  date: '2025-12-27'
-  notes: "Unity 6000.3.2f1 installed, licensed, batchmode verified"
-- wp: WP-EXT-1.7
-  title: Relic CLI Tools & Scripts
-  agent: Nadia
-  date: '2025-12-26'
-  notes: config_validator.py, project_stats.py, build.py with 94 tests
-- wp: WP-EXT-1.6
-  title: Relic Test Planning
-  agent: Dorian
-  date: '2025-12-26'
-  notes: 650+ line TESTING.md with Unity test strategy
-- wp: WP-EXT-1.5
-  title: Relic Documentation Improvements
-  agent: Dorian
-  date: '2025-12-26'
-  notes: ARCHITECTURE.md, CODING_STANDARDS.md, README updates
-- wp: WP-EXT-1.4
-  title: Create Relic Project Config
-  agent: Dorian
-  date: '2025-12-26'
-  notes: Added to agent-automation tracking
-- wp: WP-EXT-1.2
-  title: Read Kyle's Requirements
-  agent: Dorian
-  date: '2025-12-26'
-  notes: IMPLEMENTATION_PLAN.md created
-- wp: WP-EXT-1.1
-  title: Fork & Clone Setup
-  agent: Dorian
-  date: '2025-12-26'
-  notes: Fork created, cloned, remotes configured
 project_info:
   type: Unity Game (AR RTS)
   platform: Meta Quest 3
@@ -213,6 +149,6 @@ project_info:
   unity_version: "6000.3.2f1 (6.3 LTS)"
   unity_license: "Personal (activated 2025-12-27)"
 next_steps:
-  notes: "Waiting for Anette to complete WP-EXT-4.4 (AI State Machine). Once done, 2 WPs unblock in parallel: WP-EXT-5.1 (AR UX) and WP-EXT-5.3 (Central Tick Manager - P0 priority)."
-  priority: P0
-  blocked_by: WP-EXT-4.4
+  notes: "WP-EXT-5.4 (GPU Instancing/LOD) and WP-EXT-5.2 (World-Space UI) are available. WP-EXT-5.6 (Performance Validation) unblocks when WP-EXT-5.4 completes."
+  priority: P1
+  blocked_by: null

@@ -265,7 +265,7 @@ namespace Relic.Tests.EditMode
             // Re-initialize with point set
             _healthBar.Initialize();
 
-            Vector3 expectedY = _unitController.HealthBarPoint.position.y;
+            float expectedY = _unitController.HealthBarPoint.position.y;
             Vector3 barPosition = _healthBar.BarVisual.transform.position;
 
             // Bar should be near the health bar point

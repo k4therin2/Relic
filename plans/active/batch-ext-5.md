@@ -161,35 +161,44 @@ Milestone 3 complete! Combat system, squad upgrades, and AI behavior are all wor
 ---
 
 ### WP-EXT-5.5: Unit Pooling
-**Status:** ⚪ Not Started
+**Status:** ✅ Complete (2025-12-28)
 **Priority:** P1
 **Complexity:** S
-**Blocked by:** WP-EXT-5.3
+**Agent:** Agent-Dorian
+**Blocked by:** ~~WP-EXT-5.3~~ (complete)
 
 **Objective:** Implement object pooling to reduce instantiation/destruction overhead.
 
 **Tasks:**
-1. Create `UnitPool` class:
+1. [x] Create `UnitPool` class:
    - Pre-spawn pool of inactive unit GameObjects
    - `Spawn(archetype, position, team)` returns pooled unit
    - `Despawn(unit)` returns unit to pool
    - Pool expansion when depleted
-2. Create pooling configuration:
+2. [x] Create pooling configuration:
    - Initial pool size per archetype
    - Max pool size
    - Pool warm-up at scene load
-3. Integrate with UnitFactory:
+3. [x] Integrate with UnitFactory:
    - Replace Instantiate/Destroy with pool operations
-4. Handle squad cleanup when units return to pool
-5. Write unit tests for pool operations
+4. [x] Handle squad cleanup when units return to pool
+5. [x] Write unit tests for pool operations (26 tests)
 
 **Performance Target:** Zero runtime allocations for unit spawn/despawn
 
 **Acceptance Criteria:**
-- [ ] UnitPool manages unit lifecycle
-- [ ] UnitFactory uses pooling
-- [ ] No GC allocation spikes during battle
-- [ ] Pool correctly resets unit state on reuse
+- [x] UnitPool manages unit lifecycle
+- [x] UnitFactory uses pooling (togglable via _usePooling)
+- [x] No GC allocation spikes during battle (pools units instead of destroying)
+- [x] Pool correctly resets unit state on reuse (removes from squad, stops, disables AI)
+
+**Completion Notes:**
+- UnitPool class with Spawn/Despawn/WarmUp methods
+- Configurable max pool size per archetype
+- Automatic pool parent management (inactive units hidden)
+- Squad cleanup on despawn (LeaveSquad called)
+- UnitFactory integrated with _usePooling toggle (enabled by default)
+- 26 unit tests covering spawn, despawn, reuse, warm-up, capacity, and squad cleanup
 
 ---
 

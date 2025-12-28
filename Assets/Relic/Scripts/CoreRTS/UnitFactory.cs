@@ -8,11 +8,12 @@ namespace Relic.CoreRTS
     /// <summary>
     /// Factory for spawning and tracking units on the battlefield.
     /// Responsible for instantiating units from archetypes and maintaining
-    /// a registry of all active units.
+    /// a registry of all active units. Uses UnitPool for object pooling.
     /// </summary>
     /// <remarks>
     /// UnitFactory is typically attached to the BattlefieldRoot or a game manager.
-    /// See Kyle's milestones.md Milestone 2 for requirements.
+    /// When pooling is enabled, units are recycled instead of destroyed.
+    /// See Kyle's milestones.md Milestone 2/4 for requirements.
     /// </remarks>
     public class UnitFactory : MonoBehaviour
     {
@@ -25,6 +26,13 @@ namespace Relic.CoreRTS
         [Header("Spawn Settings")]
         [Tooltip("Apply height offset from archetype on spawn")]
         [SerializeField] private bool _applyHeightOffset = true;
+
+        [Header("Pooling")]
+        [Tooltip("Use object pooling for better performance")]
+        [SerializeField] private bool _usePooling = true;
+
+        [Tooltip("Reference to UnitPool (auto-created if null and pooling enabled)")]
+        [SerializeField] private UnitPool _unitPool;
 
         #endregion
 
@@ -65,6 +73,20 @@ namespace Relic.CoreRTS
             set => _unitsParent = value;
         }
 
+        /// <summary>
+        /// Whether object pooling is enabled.
+        /// </summary>
+        public bool UsePooling
+        {
+            get => _usePooling;
+            set => _usePooling = value;
+        }
+
+        /// <summary>
+        /// Reference to the UnitPool. Auto-created if pooling is enabled.
+        /// </summary>
+        public UnitPool Pool => _unitPool;
+
         #endregion
 
         #region Unity Lifecycle
@@ -74,6 +96,12 @@ namespace Relic.CoreRTS
             // Initialize team dictionaries for common teams
             _unitsByTeam[SpawnPoint.TEAM_RED] = new List<UnitController>();
             _unitsByTeam[SpawnPoint.TEAM_BLUE] = new List<UnitController>();
+
+            // Auto-create pool if pooling is enabled
+            if (_usePooling && _unitPool == null)
+            {
+                _unitPool = gameObject.AddComponent<UnitPool>();
+            }
         }
 
         #endregion
@@ -82,6 +110,7 @@ namespace Relic.CoreRTS
 
         /// <summary>
         /// Spawns a unit from an archetype at a position.
+        /// Uses object pooling if enabled for better performance.
         /// </summary>
         /// <param name="archetype">The archetype to spawn from.</param>
         /// <param name="position">World position to spawn at.</param>
@@ -109,25 +138,46 @@ namespace Relic.CoreRTS
                 spawnPosition.y += archetype.HeightOffset;
             }
 
-            // Instantiate the prefab
             Quaternion spawnRotation = rotation ?? Quaternion.identity;
-            GameObject unitGO = Instantiate(archetype.UnitPrefab, spawnPosition, spawnRotation);
+            UnitController controller;
 
-            // Parent to units container if set
-            if (_unitsParent != null)
+            // Use pooling if enabled
+            if (_usePooling && _unitPool != null)
             {
-                unitGO.transform.SetParent(_unitsParent);
-            }
+                controller = _unitPool.Spawn(archetype, spawnPosition, teamId, spawnRotation);
+                if (controller == null)
+                    return null;
 
-            // Get or add UnitController
-            UnitController controller = unitGO.GetComponent<UnitController>();
-            if (controller == null)
+                // Parent to units container if set
+                if (_unitsParent != null)
+                {
+                    controller.transform.SetParent(_unitsParent);
+                }
+            }
+            else
             {
-                controller = unitGO.AddComponent<UnitController>();
-            }
+                // Legacy non-pooled spawning
+                GameObject unitGO = Instantiate(archetype.UnitPrefab, spawnPosition, spawnRotation);
 
-            // Initialize the controller
-            controller.Initialize(archetype, teamId);
+                // Parent to units container if set
+                if (_unitsParent != null)
+                {
+                    unitGO.transform.SetParent(_unitsParent);
+                }
+
+                // Get or add UnitController
+                controller = unitGO.GetComponent<UnitController>();
+                if (controller == null)
+                {
+                    controller = unitGO.AddComponent<UnitController>();
+                }
+
+                // Initialize the controller
+                controller.Initialize(archetype, teamId);
+
+                // Name the GameObject for debugging
+                unitGO.name = $"{archetype.DisplayName ?? archetype.Id}_Team{teamId}_{UnitCount}";
+            }
 
             // Subscribe to death event for cleanup
             controller.OnDeath += () => OnUnitDied(controller);
@@ -135,12 +185,9 @@ namespace Relic.CoreRTS
             // Track the unit
             RegisterUnit(controller);
 
-            // Name the GameObject for debugging
-            unitGO.name = $"{archetype.DisplayName ?? archetype.Id}_Team{teamId}_{UnitCount}";
-
             OnUnitSpawned?.Invoke(controller);
 
-            return unitGO;
+            return controller.gameObject;
         }
 
         /// <summary>
@@ -186,6 +233,20 @@ namespace Relic.CoreRTS
             }
 
             return spawnedUnits;
+        }
+
+        /// <summary>
+        /// Pre-spawns units into the pool for faster runtime spawning.
+        /// Only works when pooling is enabled.
+        /// </summary>
+        /// <param name="archetype">The archetype to warm up.</param>
+        /// <param name="count">Number of units to pre-spawn.</param>
+        public void WarmUp(UnitArchetypeSO archetype, int count)
+        {
+            if (_usePooling && _unitPool != null)
+            {
+                _unitPool.WarmUp(archetype, count);
+            }
         }
 
         #endregion
@@ -268,7 +329,7 @@ namespace Relic.CoreRTS
         #region Cleanup Methods
 
         /// <summary>
-        /// Destroys a specific unit.
+        /// Destroys a specific unit. If pooling is enabled, returns to pool instead.
         /// </summary>
         /// <param name="unit">The unit controller to destroy.</param>
         public void DestroyUnit(UnitController unit)
@@ -278,7 +339,12 @@ namespace Relic.CoreRTS
             UnregisterUnit(unit);
             OnUnitDestroyed?.Invoke(unit);
 
-            if (unit.gameObject != null)
+            // Use pooling if enabled
+            if (_usePooling && _unitPool != null)
+            {
+                _unitPool.Despawn(unit);
+            }
+            else if (unit.gameObject != null)
             {
                 SafeDestroy(unit.gameObject);
             }
@@ -356,10 +422,15 @@ namespace Relic.CoreRTS
 
         private void OnUnitDied(UnitController unit)
         {
-            // Unit died naturally - remove from tracking but don't destroy immediately
-            // (allows for death animations, etc.)
+            // Unit died naturally - remove from tracking
             UnregisterUnit(unit);
             OnUnitDestroyed?.Invoke(unit);
+
+            // Return to pool if pooling is enabled (after death animations, etc.)
+            if (_usePooling && _unitPool != null)
+            {
+                _unitPool.Despawn(unit);
+            }
         }
 
         private void CleanupDestroyedUnits()

@@ -137,6 +137,30 @@ namespace Relic.CoreRTS
                 Armor = _armor
             };
         }
+
+#if UNITY_EDITOR || UNITY_INCLUDE_TESTS
+        /// <summary>
+        /// Sets test values for unit testing. Only available in Editor/Test builds.
+        /// </summary>
+        /// <param name="id">Unit identifier.</param>
+        /// <param name="displayName">Display name.</param>
+        /// <param name="prefab">Unit prefab.</param>
+        /// <param name="maxHealth">Max health.</param>
+        /// <param name="moveSpeed">Movement speed.</param>
+        /// <param name="detectionRange">Detection range.</param>
+        /// <param name="armor">Armor value.</param>
+        public void SetTestValues(string id, string displayName, GameObject prefab,
+            int maxHealth = 100, float moveSpeed = 3f, float detectionRange = 10f, int armor = 0)
+        {
+            _id = id;
+            _displayName = displayName;
+            _unitPrefab = prefab;
+            _maxHealth = maxHealth;
+            _moveSpeed = moveSpeed;
+            _detectionRange = detectionRange;
+            _armor = armor;
+        }
+#endif
     }
 
     /// <summary>
