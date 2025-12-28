@@ -151,42 +151,51 @@ Milestone 2 is complete! Unit data architecture, movement system, selection syst
 ---
 
 ### WP-EXT-4.4: AI Behavior State Machine
-**Status:** 🟡 In Progress
+**Status:** ✅ Complete (2025-12-28)
 **Priority:** P1
 **Complexity:** M
-**Agent:** Agent-Anette
+**Agent:** Agent-Anette, Agent-Dorian
 **Blocked by:** ~~WP-EXT-4.3~~ (complete)
 
 **Objective:** Implement basic AI for enemy units.
 
 **Tasks:**
-1. Create `UnitAI` component with state machine:
+1. [x] Create `UnitAI` component with state machine:
    - States: Idle, Moving, Attacking
    - Transitions handled in Update
-2. Implement state behaviors:
+2. [x] Implement state behaviors:
    - **Idle:** Scan for enemies in detection radius
    - **Moving:** Move to destination, scan while moving
    - **Attacking:** Fire at target, re-acquire if target dies
-3. Add enemy detection:
+3. [x] Add enemy detection:
    - DetectionRadius (float) on UnitController
    - FindNearestEnemy() method using Physics.OverlapSphere
    - Filter by team (attackable = different team)
-4. Auto-acquire behavior:
+4. [x] Auto-acquire behavior:
    - When enemy enters detection radius, switch to Attacking
    - When current target dies, find new target
    - When no enemies in range, return to Idle (or continue Move)
-5. Team configuration:
+5. [x] Team configuration:
    - Use existing team field from UnitController
    - Team 0 vs Team 1 for basic opposition
-6. Write unit tests for state transitions
-7. Create debug visualization (detection radius gizmo)
+6. [x] Write unit tests for state transitions (23 tests)
+7. [x] Create debug visualization (detection radius gizmo)
 
 **Acceptance Criteria:**
-- [ ] AI state machine with Idle/Moving/Attacking
-- [ ] Auto-acquire nearest enemy
-- [ ] Re-target when target destroyed
-- [ ] Detection radius configurable per unit
-- [ ] AI works in both AR and debug scenes
+- [x] AI state machine with Idle/Moving/Attacking
+- [x] Auto-acquire nearest enemy
+- [x] Re-target when target destroyed
+- [x] Detection radius configurable per unit
+- [x] AI works in both AR and debug scenes
+
+**Completion Notes:**
+- UnitAI component with complete state machine (Idle, Moving, Attacking)
+- Physics.OverlapSphereNonAlloc for efficient enemy detection
+- Auto-engage and re-targeting on target death
+- 23 unit tests covering state transitions, targeting, and movement
+- Debug gizmos for detection radius visualization
+- Fixed UnitController.Stop() to check isOnNavMesh (prevents errors in tests)
+- Implementation started by Anette, completed and tests fixed by Dorian
 
 ---
 
