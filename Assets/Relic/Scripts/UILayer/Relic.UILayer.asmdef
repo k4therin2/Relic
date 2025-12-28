@@ -4,6 +4,7 @@
     "references": [
         "Relic.Data",
         "Relic.Core",
+        "Relic.CoreRTS",
         "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
