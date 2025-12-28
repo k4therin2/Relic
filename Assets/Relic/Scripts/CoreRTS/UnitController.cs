@@ -41,7 +41,8 @@ namespace Relic.CoreRTS
         private bool _isSelected;
         private UnitState _currentState = UnitState.Idle;
 
-        // Placeholder for M3 squad system
+        // Squad reference for M3 combat modifiers
+        private Squad _squad;
         private int _squadId = -1;
 
         #endregion
@@ -77,6 +78,8 @@ namespace Relic.CoreRTS
         public UnitStats Stats => _stats;
         public int TeamId => _teamId;
         public int SquadId => _squadId;
+        public Squad Squad => _squad;
+        public bool IsInSquad => _squad != null;
         public bool IsSelected => _isSelected;
         public UnitState CurrentState => _currentState;
         public bool IsAlive => _stats.IsAlive;
@@ -172,12 +175,76 @@ namespace Relic.CoreRTS
         }
 
         /// <summary>
-        /// Assigns the unit to a squad (placeholder for M3).
+        /// Assigns the unit to a squad.
+        /// </summary>
+        /// <param name="squad">The squad to join.</param>
+        /// <returns>True if successfully joined the squad.</returns>
+        public bool JoinSquad(Squad squad)
+        {
+            if (squad == null)
+                return false;
+
+            // Leave current squad if in one
+            if (_squad != null)
+                LeaveSquad();
+
+            if (squad.AddMember(this))
+            {
+                _squad = squad;
+                _squadId = _squad.Id.GetHashCode();
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Removes the unit from its current squad.
+        /// </summary>
+        /// <returns>True if successfully left the squad.</returns>
+        public bool LeaveSquad()
+        {
+            if (_squad == null)
+                return false;
+
+            _squad.RemoveMember(this);
+            _squad = null;
+            _squadId = -1;
+            return true;
+        }
+
+        /// <summary>
+        /// Legacy method for squad assignment by ID (for backwards compatibility).
         /// </summary>
         /// <param name="squadId">The squad ID to assign.</param>
+        [System.Obsolete("Use JoinSquad(Squad) instead.")]
         public void AssignToSquad(int squadId)
         {
             _squadId = squadId;
+        }
+
+        /// <summary>
+        /// Gets the squad's hit chance multiplier, or 1.0 if not in a squad.
+        /// </summary>
+        public float GetSquadHitChanceMultiplier()
+        {
+            return _squad?.HitChanceMultiplier ?? 1f;
+        }
+
+        /// <summary>
+        /// Gets the squad's damage multiplier, or 1.0 if not in a squad.
+        /// </summary>
+        public float GetSquadDamageMultiplier()
+        {
+            return _squad?.DamageMultiplier ?? 1f;
+        }
+
+        /// <summary>
+        /// Gets the squad's elevation bonus, or 0 if not in a squad.
+        /// </summary>
+        public float GetSquadElevationBonus()
+        {
+            return _squad?.ElevationBonusFlat ?? 0f;
         }
 
         #endregion
