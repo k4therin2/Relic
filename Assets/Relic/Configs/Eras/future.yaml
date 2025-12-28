@@ -1,0 +1,144 @@
+# Future Era Configuration
+# ScriptableObject data for EraConfigSO
+
+type: EraConfig
+name: future
+display_name: Future Era
+description: >
+  Advanced technology dominates the battlefield.
+  Mechs, energy weapons, and drone swarms clash
+  in devastating combat. The future is now.
+
+visual_style: future
+primary_color: [0.2, 0.4, 0.6, 1.0]   # Tech blue
+secondary_color: [0.1, 0.8, 0.9, 1.0]  # Cyan accent
+
+# Economy settings
+starting_resources: 2000
+resource_regen_rate: 15
+max_resources: 8000
+
+# Unit archetypes available in this era
+archetypes:
+  - id: trooper
+    name: Combat Trooper
+    description: Armored infantry with plasma rifle
+    base_health: 100
+    base_move_speed: 5.5
+    cost: 75
+    max_count: 0
+    weapon_stats:
+      name: plasma_rifle
+      shots_per_burst: 3
+      fire_rate: 4.0
+      base_hit_chance: 0.7
+      base_damage: 20
+      effective_range: 35
+      range_curve:
+        - [0, 1.0]
+        - [20, 0.9]
+        - [35, 0.6]
+
+  - id: drone
+    name: Attack Drone
+    description: Autonomous flying combat unit
+    base_health: 40
+    base_move_speed: 10.0
+    cost: 100
+    max_count: 20
+    weapon_stats:
+      name: micro_missiles
+      shots_per_burst: 4
+      fire_rate: 2.0
+      base_hit_chance: 0.55
+      base_damage: 12
+      effective_range: 25
+      elevation_curve:
+        - [-10, 1.2]
+        - [0, 1.0]
+        - [10, 0.8]
+
+  - id: mech
+    name: Battle Mech
+    description: Bipedal assault walker
+    base_health: 500
+    base_move_speed: 4.0
+    cost: 600
+    max_count: 3
+    weapon_stats:
+      name: heavy_laser
+      shots_per_burst: 2
+      fire_rate: 1.5
+      base_hit_chance: 0.8
+      base_damage: 80
+      effective_range: 45
+      range_curve:
+        - [0, 1.0]
+        - [30, 0.95]
+        - [45, 0.7]
+
+  - id: sniper_bot
+    name: Sniper Bot
+    description: Precision targeting drone
+    base_health: 60
+    base_move_speed: 3.0
+    cost: 200
+    max_count: 5
+    weapon_stats:
+      name: rail_gun
+      shots_per_burst: 1
+      fire_rate: 0.3
+      base_hit_chance: 0.95
+      base_damage: 120
+      effective_range: 70
+      elevation_curve:
+        - [-10, 0.9]
+        - [0, 1.0]
+        - [10, 1.15]
+
+  - id: hovertank
+    name: Hover Tank
+    description: Anti-gravity armored vehicle
+    base_health: 350
+    base_move_speed: 7.0
+    cost: 550
+    max_count: 4
+    weapon_stats:
+      name: particle_cannon
+      shots_per_burst: 1
+      fire_rate: 0.5
+      base_hit_chance: 0.85
+      base_damage: 130
+      effective_range: 55
+
+# Upgrades available in this era
+upgrades:
+  - name: Targeting AI
+    description: Advanced AI improves lock-on accuracy
+    cost: 200
+    hit_chance_multiplier: 1.25
+
+  - name: Overcharge
+    description: Energy weapons deal more damage
+    cost: 350
+    damage_multiplier: 1.35
+
+  - name: Shield Generators
+    description: Energy shields reduce incoming damage
+    cost: 400
+    damage_multiplier: 0.8
+
+  - name: Tactical Sensors
+    description: High-ground advantage enhanced by sensors
+    cost: 250
+    elevation_bonus: 0.25
+
+  - name: Swarm Coordination
+    description: Drones coordinate for better accuracy
+    cost: 175
+    hit_chance_multiplier: 1.15
+
+  - name: Nanite Repair
+    description: Self-repairing units (reduced effective damage)
+    cost: 300
+    damage_multiplier: 0.9

@@ -1,0 +1,87 @@
+# Ancient Era Configuration
+# ScriptableObject data for EraConfigSO
+
+type: EraConfig
+name: ancient
+display_name: Ancient Era
+description: >
+  Warriors of ancient civilizations clash on the battlefield.
+  Spears, shields, and chariots dominate the combat landscape.
+  Upgrade your legions with veteran training and superior formations.
+
+visual_style: ancient
+primary_color: [0.65, 0.55, 0.35, 1.0]  # Sandy bronze
+secondary_color: [0.8, 0.7, 0.5, 1.0]   # Light gold
+
+# Economy settings
+starting_resources: 1000
+resource_regen_rate: 8
+max_resources: 4000
+
+# Unit archetypes available in this era
+archetypes:
+  - id: spearman
+    name: Spearman
+    description: Basic infantry with long reach
+    base_health: 80
+    base_move_speed: 4.0
+    cost: 50
+    max_count: 0
+    weapon_stats:
+      name: bronze_spear
+      shots_per_burst: 1
+      fire_rate: 1.0
+      base_hit_chance: 0.7
+      base_damage: 15
+      effective_range: 3
+
+  - id: archer
+    name: Archer
+    description: Ranged unit with bow
+    base_health: 50
+    base_move_speed: 5.0
+    cost: 75
+    max_count: 0
+    weapon_stats:
+      name: composite_bow
+      shots_per_burst: 1
+      fire_rate: 0.8
+      base_hit_chance: 0.6
+      base_damage: 20
+      effective_range: 25
+      range_curve:
+        - [0, 1.0]
+        - [15, 0.8]
+        - [25, 0.4]
+
+  - id: chariot
+    name: War Chariot
+    description: Fast cavalry with archer
+    base_health: 120
+    base_move_speed: 8.0
+    cost: 200
+    max_count: 10
+    weapon_stats:
+      name: chariot_bow
+      shots_per_burst: 2
+      fire_rate: 1.2
+      base_hit_chance: 0.5
+      base_damage: 25
+      effective_range: 20
+
+# Upgrades available in this era
+upgrades:
+  - name: Veteran Training
+    description: Increased accuracy from combat experience
+    cost: 150
+    hit_chance_multiplier: 1.15
+
+  - name: Bronze Weapons
+    description: Superior bronze weapons deal more damage
+    cost: 200
+    damage_multiplier: 1.2
+
+  - name: Phalanx Formation
+    description: Higher ground advantage when in formation
+    cost: 175
+    elevation_bonus: 0.1

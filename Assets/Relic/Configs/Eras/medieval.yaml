@@ -1,0 +1,111 @@
+# Medieval Era Configuration
+# ScriptableObject data for EraConfigSO
+
+type: EraConfig
+name: medieval
+display_name: Medieval Era
+description: >
+  Knights and peasants wage war across the realm.
+  Castles provide strategic advantages while siege weapons
+  break through defenses. Honor and steel decide victory.
+
+visual_style: medieval
+primary_color: [0.4, 0.35, 0.3, 1.0]   # Dark iron grey
+secondary_color: [0.6, 0.1, 0.1, 1.0]  # Deep red
+
+# Economy settings
+starting_resources: 1200
+resource_regen_rate: 10
+max_resources: 5000
+
+# Unit archetypes available in this era
+archetypes:
+  - id: swordsman
+    name: Swordsman
+    description: Frontline infantry with sword and shield
+    base_health: 100
+    base_move_speed: 4.5
+    cost: 60
+    max_count: 0
+    weapon_stats:
+      name: longsword
+      shots_per_burst: 1
+      fire_rate: 1.2
+      base_hit_chance: 0.75
+      base_damage: 18
+      effective_range: 2
+
+  - id: crossbowman
+    name: Crossbowman
+    description: Heavy ranged unit with crossbow
+    base_health: 60
+    base_move_speed: 3.5
+    cost: 100
+    max_count: 0
+    weapon_stats:
+      name: crossbow
+      shots_per_burst: 1
+      fire_rate: 0.5
+      base_hit_chance: 0.8
+      base_damage: 35
+      effective_range: 30
+      range_curve:
+        - [0, 1.0]
+        - [20, 0.9]
+        - [30, 0.5]
+
+  - id: knight
+    name: Knight
+    description: Heavily armored mounted warrior
+    base_health: 180
+    base_move_speed: 7.0
+    cost: 250
+    max_count: 8
+    weapon_stats:
+      name: lance
+      shots_per_burst: 1
+      fire_rate: 0.8
+      base_hit_chance: 0.7
+      base_damage: 40
+      effective_range: 4
+
+  - id: siege_tower
+    name: Siege Tower
+    description: Slow but devastating siege weapon
+    base_health: 300
+    base_move_speed: 1.5
+    cost: 400
+    max_count: 3
+    weapon_stats:
+      name: ballista
+      shots_per_burst: 1
+      fire_rate: 0.2
+      base_hit_chance: 0.9
+      base_damage: 100
+      effective_range: 40
+      elevation_curve:
+        - [-10, 0.7]
+        - [0, 1.0]
+        - [10, 1.3]
+
+# Upgrades available in this era
+upgrades:
+  - name: Steel Weapons
+    description: Hardened steel increases damage
+    cost: 250
+    damage_multiplier: 1.25
+
+  - name: Heavy Armor
+    description: Better protection (represented as damage reduction)
+    cost: 300
+    damage_multiplier: 0.85
+
+  - name: Veteran Marksmen
+    description: Experienced crossbowmen rarely miss
+    cost: 200
+    hit_chance_multiplier: 1.2
+
+  - name: High Ground Tactics
+    description: Masters of positional warfare
+    cost: 175
+    elevation_bonus: 0.15

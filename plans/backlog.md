@@ -4,41 +4,25 @@ Deferred items and future enhancements not yet scheduled.
 
 ---
 
-## Current Blocker
+## ✅ Resolved: Unity Setup Complete
 
-### Unity License Activation (WP-EXT-1.3)
-**Status:** Blocked - Requires User Action
-**Priority:** P0 (Blocking all game development)
+**Unity License Activation** - RESOLVED 2025-12-27
 
-Unity 6.3 LTS is installed on Colby but license activation requires GUI interaction.
-Colby is a headless server.
+Unity 6000.3.2f1 (6.3 LTS) is now fully installed and licensed on Colby:
+- Android Build Support modules installed
+- Personal license activated
+- Batchmode verified with xvfb-run
 
-**Options (See DEVELOPMENT.md for details):**
-1. SSH with X11 forwarding: `ssh -X k4therin2@colby` then `~/UnityHub.AppImage --no-sandbox`
-2. VNC/Remote Desktop to Colby
-3. Copy license file from another machine: `~/.config/unity3d/Unity/Unity_lic.ulf`
-
-Once activated, all future milestones unblock.
+**Game development is now unblocked!** See Batch EXT-2 for Milestone 1 work.
 
 ---
 
-## Future Milestones (From Kyle's Roadmap)
-
-All milestones from `docs/milestones.md` are planned but blocked until Unity setup completes.
-
-### Milestone 1: Project and AR Tabletop Foundation
-**Blocked by:** WP-EXT-1.3 (Unity License)
-
-Work packages:
-- RELIC-1.1: Unity Project Initialization
-- RELIC-1.2: Scene Architecture
-- RELIC-1.3: AR Battlefield Placement
-- RELIC-1.4: Era Configuration System
+## Future Milestones (After M1)
 
 ### Milestone 2: Core RTS Skeleton
-**Blocked by:** Milestone 1
+**Blocked by:** Milestone 1 (Batch EXT-2)
 
-Work packages:
+Work packages (Batch EXT-3):
 - RELIC-2.1: Unit Archetype System
 - RELIC-2.2: Unit Controller and Spawning
 - RELIC-2.3: Selection System
@@ -47,7 +31,7 @@ Work packages:
 ### Milestone 3: Combat and Upgrades
 **Blocked by:** Milestone 2
 
-Work packages:
+Work packages (Batch EXT-4):
 - RELIC-3.1: Weapon Stats System
 - RELIC-3.2: Squad System and Upgrades
 - RELIC-3.3: Per-Bullet Combat (complex)
@@ -56,7 +40,7 @@ Work packages:
 ### Milestone 4: Performance Optimization
 **Blocked by:** Milestone 3
 
-Work packages:
+Work packages (Batch EXT-5):
 - RELIC-4.1: AR UX Enhancements
 - RELIC-4.2: Central Tick Manager
 - RELIC-4.3: GPU Instancing and LOD
@@ -65,7 +49,7 @@ Work packages:
 ### Milestone 5: Scenarios and Polish (Optional Stretch)
 **Blocked by:** Milestone 4
 
-Work packages:
+Work packages (Batch EXT-6):
 - RELIC-5.1: Scenario System
 - RELIC-5.2: Era Visual/Audio Polish
 
@@ -74,7 +58,7 @@ Work packages:
 ## Technical Backlog
 
 ### Build Automation
-When Unity is available, integrate build.py tool with CI/CD.
+When Unity project is created (WP-EXT-2.1), integrate build.py tool with CI/CD.
 
 ### Config Validation
 Run config_validator.py as part of CI to catch ScriptableObject issues.
@@ -92,4 +76,4 @@ Implement 100v100 unit performance benchmarks as documented in TESTING.md.
 
 ---
 
-*Last updated: 2025-12-27 by Agent-Anette (WP-62.3)*
+*Last updated: 2025-12-28 by Agent-Henry (Unity now working, Batch EXT-2 created)*
