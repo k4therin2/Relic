@@ -41,18 +41,17 @@ Relic is a tabletop AR real-time strategy sandbox for Meta Quest 3.
 
 ## Active Work
 
-**Batch EXT-5: Milestone 4 - AR UX, Large Battles, and Performance** - 🟡 3/6 Complete
+**Batch EXT-5: Milestone 4 - AR UX, Large Battles, and Performance** - 🟡 4/6 Complete
 
 | WP | Title | Status | Agent |
 |----|-------|--------|-------|
 | WP-EXT-5.1 | AR UX Enhancements | ✅ Complete | Anette |
-| WP-EXT-5.2 | World-Space UI Panel | ⚪ Available | - |
+| WP-EXT-5.2 | World-Space UI Panel | ✅ Complete | Nadia |
 | WP-EXT-5.3 | Central Tick Manager | ✅ Complete | Dorian |
 | WP-EXT-5.4 | GPU Instancing and LOD | ⏸️ Parked | - |
 | WP-EXT-5.5 | Unit Pooling | ✅ Complete | Dorian |
 | WP-EXT-5.6 | Performance Profiling | 🔴 Blocked (5.4) | - |
 
-**Available:** WP-EXT-5.2 (World-Space UI Panel) - P1/M, ready for claiming.
 **Blocked:** WP-EXT-5.4 (GPU Instancing) parked awaiting art assets. WP-EXT-5.6 blocked on 5.4.
 
 See [active/batch-ext-5.md](active/batch-ext-5.md) for full details.
@@ -138,4 +137,4 @@ See [docs/milestones.md](../docs/milestones.md) for full specification.
 ---
 
 *This file provides overview only. See index.yaml for machine-readable status.*
-*Last updated: 2025-12-28 by Agent-Henry - M4 status update: 3/6 WPs complete, WP-EXT-5.2 available*
+*Last updated: 2025-12-28 by Agent-Nadia - M4 status: 4/6 WPs complete (WP-EXT-5.2 World-Space UI Panel)*

@@ -5,6 +5,7 @@
         "Relic.Data",
         "Relic.Core",
         "Relic.CoreRTS",
+        "Relic.ARLayer",
         "Unity.TextMeshPro"
     ],
     "includePlatforms": [],

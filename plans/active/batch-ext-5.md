@@ -60,32 +60,46 @@ Milestone 3 complete! Combat system, squad upgrades, and AI behavior are all wor
 ---
 
 ### WP-EXT-5.2: World-Space UI Panel
-**Status:** ⚪ Not Started
+**Status:** ✅ Complete (2025-12-28)
 **Priority:** P1
 **Complexity:** M
-**Blocked by:** WP-EXT-5.1
+**Agent:** Agent-Nadia
+**Started:** 2025-12-28
+**Blocked by:** ~~WP-EXT-5.1~~ (complete)
 
 **Objective:** Create in-world UI panel for spawning, era switching, and match control.
 
 **Tasks:**
-1. Create `WorldSpaceUIPanel` component:
+1. [x] Create `WorldSpaceUIPanel` component:
    - Anchored to battlefield (follows placement)
-   - Always faces player (billboard or fixed position)
-2. Implement UI sections:
-   - **Spawn Controls:** Select archetype, spawn unit/squad
-   - **Era Selector:** Switch between Ancient/Medieval/WWII/Future
-   - **Upgrade Panel:** Apply upgrades to selected squad
-   - **Match Controls:** Reset match, pause/resume
-3. Create UI prefabs using Unity UI (Canvas in World Space mode)
-4. Integrate with existing EraManager and Squad systems
-5. Write tests for UI interactions
+   - Always faces player (billboard mode with vertical lock option)
+2. [x] Implement UI sections:
+   - **Spawn Controls:** Select archetype from dropdown, spawn for Team 0/1
+   - **Era Selector:** Switch between eras, dynamically created buttons
+   - **Upgrade Panel:** Apply upgrades to selected squad with validation
+   - **Match Controls:** Reset match (clears all units), pause/resume with Time.timeScale
+3. [x] Create UI prefabs using Unity UI (Canvas in World Space mode)
+   - Editor utility `WorldSpaceUIPanelCreator` creates complete prefab
+4. [x] Integrate with existing EraManager, SelectionManager, Squad systems
+5. [x] Write tests for UI interactions (27 unit tests)
 
 **Acceptance Criteria:**
-- [ ] World-space UI visible and readable in AR
-- [ ] Can spawn units from UI
-- [ ] Can switch eras from UI
-- [ ] Can apply upgrades from UI
-- [ ] Can reset match from UI
+- [x] World-space UI visible and readable in AR (Canvas in World Space mode)
+- [x] Can spawn units from UI (archetype dropdown + team buttons)
+- [x] Can switch eras from UI (era buttons with selection highlight)
+- [x] Can apply upgrades from UI (upgrade buttons, squad validation)
+- [x] Can reset match from UI (ResetMatch clears all units)
+
+**Completion Notes:**
+- WorldSpaceUIPanel: Comprehensive component with 4 UI sections
+- Anchoring: Follows battlefield transform with configurable offset
+- Billboard: Faces camera with optional vertical rotation lock
+- Spawn Controls: TMP_Dropdown for archetype, buttons for Team 0/1
+- Era Selector: Dynamically creates buttons per EraConfigSO
+- Upgrade Panel: Shows squad info, upgrade buttons with era filtering
+- Match Controls: Reset (clears units + resumes), Pause/Resume (Time.timeScale)
+- WorldSpaceUIPanelCreator: Editor tool creates complete prefab with all UI elements
+- 27 unit tests covering initialization, pause, match reset, visibility, anchoring, upgrades
 
 ---
 

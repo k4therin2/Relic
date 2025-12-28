@@ -8,7 +8,8 @@
         "Relic.ARLayer",
         "Relic.UILayer",
         "Unity.XR.ARFoundation",
-        "Unity.XR.CoreUtils"
+        "Unity.XR.CoreUtils",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [
         "Editor"
