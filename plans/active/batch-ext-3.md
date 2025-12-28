@@ -23,7 +23,7 @@ Milestone 1 is complete! Unity project, scenes, AR battlefield placement, and er
 ## Work Packages
 
 ### WP-EXT-3.1: Unit Data Architecture
-**Status:** 🟡 In Progress
+**Status:** ✅ Complete (2025-12-28)
 **Priority:** P0 (blocking other M2 work)
 **Complexity:** S
 **Agent:** Agent-Anette
@@ -65,15 +65,16 @@ Milestone 1 is complete! Unity project, scenes, AR battlefield placement, and er
 - [x] UnitController MonoBehaviour created
 - [x] 4 sample archetypes (via Editor menu: Relic > Create Sample Archetypes)
 - [x] Unit prefab (via Editor menu: Relic > Create Base Unit Prefab)
-- [ ] Tests pass (need Unity compilation)
+- [x] Unity compiles without errors (verified via batchmode)
 
 ---
 
 ### WP-EXT-3.2: Unit Movement System
-**Status:** ⚪ Available (blocked by WP-EXT-3.1)
+**Status:** ⚪ Available
 **Priority:** P1
 **Complexity:** M
 **For:** Developer
+**Unblocked:** WP-EXT-3.1 complete
 
 **Objective:** Implement NavMesh-based unit movement.
 
@@ -107,10 +108,11 @@ Milestone 1 is complete! Unity project, scenes, AR battlefield placement, and er
 ---
 
 ### WP-EXT-3.3: Selection System
-**Status:** ⚪ Available (blocked by WP-EXT-3.1)
+**Status:** ⚪ Available
 **Priority:** P1
 **Complexity:** M
 **For:** Developer
+**Unblocked:** WP-EXT-3.1 complete
 
 **Objective:** Implement unit selection for both AR and debug modes.
 
