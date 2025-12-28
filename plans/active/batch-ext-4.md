@@ -114,11 +114,11 @@ Milestone 2 is complete! Unit data architecture, movement system, selection syst
 ---
 
 ### WP-EXT-4.3: Combat Logic with Per-Bullet Evaluation
-**Status:** Not Started
+**Status:** 🟡 In Progress
 **Priority:** P1
 **Complexity:** L (complex math and integration)
-**Agent:** Unassigned
-**Blocked by:** WP-EXT-4.1, WP-EXT-4.2
+**Agent:** Agent-Anette
+**Blocked by:** ~~WP-EXT-4.1, WP-EXT-4.2~~ (complete)
 
 **Objective:** Implement per-bullet hit chance with elevation and squad modifiers.
 

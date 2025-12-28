@@ -252,5 +252,33 @@ namespace Relic.CoreRTS
         {
             return distance >= 0f && distance <= _effectiveRange;
         }
+
+        /// <summary>
+        /// Evaluates the range hit curve at a normalized range value.
+        /// </summary>
+        /// <param name="normalizedRange">Range normalized to 0-1 (0 = point blank, 1 = effective range).</param>
+        /// <returns>Range modifier value from the curve.</returns>
+        public float EvaluateRangeCurve(float normalizedRange)
+        {
+            if (_rangeHitCurve == null || _rangeHitCurve.keys.Length == 0)
+                return 1f;
+
+            return _rangeHitCurve.Evaluate(normalizedRange);
+        }
+
+        /// <summary>
+        /// Evaluates the elevation bonus curve at a normalized elevation value.
+        /// </summary>
+        /// <param name="normalizedElevation">Elevation normalized to -1 to 1 (-1 = target much higher, 1 = attacker much higher).</param>
+        /// <returns>Elevation modifier value from the curve.</returns>
+        public float EvaluateElevationCurve(float normalizedElevation)
+        {
+            if (_elevationBonusCurve == null || _elevationBonusCurve.keys.Length == 0)
+                return 1f;
+
+            // The elevation curve stores bonus values, add 1 to get multiplier
+            float bonus = _elevationBonusCurve.Evaluate(normalizedElevation * 10f); // Scale to match curve keys
+            return 1f + bonus;
+        }
     }
 }
