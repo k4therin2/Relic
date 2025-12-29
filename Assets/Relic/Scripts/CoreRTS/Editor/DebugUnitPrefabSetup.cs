@@ -108,10 +108,8 @@ namespace Relic.CoreRTS.Editor
             // Add TeamColorApplier
             TeamColorApplier colorApplier = unitGO.AddComponent<TeamColorApplier>();
 
-            // Add SelectionIndicator spawn point (empty child for selection ring)
-            GameObject selectionPoint = new GameObject("SelectionPoint");
-            selectionPoint.transform.SetParent(unitGO.transform);
-            selectionPoint.transform.localPosition = new Vector3(0f, 0.05f, 0f);
+            // Add SelectionIndicator component for visual selection feedback
+            SelectionIndicator selectionIndicator = unitGO.AddComponent<SelectionIndicator>();
 
             // Add HealthBar spawn point (empty child above unit)
             GameObject healthBarPoint = new GameObject("HealthBarPoint");

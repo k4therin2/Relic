@@ -74,6 +74,9 @@ namespace Relic.CoreRTS.Editor
             // Add TickManager
             managersGO.AddComponent<TickManager>();
 
+            // Add DestinationMarkerManager for move command visual feedback
+            managersGO.AddComponent<DestinationMarkerManager>();
+
             // Save scene
             EditorSceneManager.SaveScene(newScene, ScenePath);
 

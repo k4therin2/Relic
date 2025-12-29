@@ -56,6 +56,7 @@ namespace Relic.Tests.EditMode
             unitGO.AddComponent<NavMeshAgent>();
             unitGO.AddComponent<UnitController>();
             unitGO.AddComponent<TeamColorApplier>();
+            unitGO.AddComponent<SelectionIndicator>();
 
             return unitGO;
         }
@@ -88,6 +89,13 @@ namespace Relic.Tests.EditMode
         {
             // Assert
             Assert.IsNotNull(_unitGO.GetComponent<TeamColorApplier>());
+        }
+
+        [Test]
+        public void DebugUnit_HasSelectionIndicator()
+        {
+            // Assert
+            Assert.IsNotNull(_unitGO.GetComponent<SelectionIndicator>());
         }
 
         [Test]

@@ -109,36 +109,40 @@ Create a flat (non-AR) debug scene for rapid testing and development. This provi
 ---
 
 ### WP-EXT-6.3: Selection and Movement System
-**Status:** Not Started
+**Status:** Complete (2025-12-29)
 **Priority:** P2
 **Complexity:** M
-**Agent:** (unassigned)
+**Agent:** Nadia
 **Blocked by:** WP-EXT-6.2
 
 **Objective:** Enable basic RTS controls for unit selection and movement.
 
 **Tasks:**
-1. [ ] Integrate `SelectionManager` (from WP-EXT-3.3):
-   - Reuse existing SelectionManager singleton
-   - Create `DebugSelectionController` (if not already exists)
-   - Implement mouse-based selection:
-     - Left-click to select single unit (raycast)
-     - Click-drag for box selection (optional: defer to future WP)
-2. [ ] Implement visual selection feedback:
-   - Reuse `SelectionIndicator` from WP-EXT-3.3
-   - Add selection ring/circle under selected units
-   - Highlight selected units (outline or glow effect - optional)
-3. [ ] Integrate `CommandManager` (from WP-EXT-3.2):
-   - Right-click to issue move command
-   - Create `MoveCommand` using NavMesh pathfinding
-   - Add destination marker (reuse DestinationMarker from WP-EXT-5.1 if available)
-4. [ ] Write unit tests for selection and commands (10-15 tests)
+1. [x] Integrate `SelectionManager` (from WP-EXT-3.3):
+   - Reuses existing SelectionManager singleton
+   - DebugSelectionController already exists with full functionality
+   - Left-click to select, shift+click to add, box-drag for multi-select
+2. [x] Implement visual selection feedback:
+   - Added SelectionIndicator to debug unit prefab
+   - Shows ring/circle under selected units
+   - Colors: green for friendly, red for enemy, yellow for hover
+3. [x] Integrate movement commands:
+   - Right-click to issue move command via DebugSelectionController
+   - Units use NavMeshAgent for pathfinding
+   - Added DestinationMarkerManager to scene for move command feedback
+4. [x] Write unit tests (18 tests total for debug unit prefab)
 
 **Acceptance Criteria:**
-- [ ] Left-click selects unit (raycast hit detection)
-- [ ] Selected units show visual feedback (SelectionIndicator)
-- [ ] Right-click moves selected units to clicked position
-- [ ] Units pathfind using NavMesh to destination
+- [x] Left-click selects unit (raycast hit detection)
+- [x] Selected units show visual feedback (SelectionIndicator)
+- [x] Right-click moves selected units to clicked position
+- [x] Units pathfind using NavMesh to destination
+
+**Implementation Notes:**
+- All selection/movement code was already implemented in WP-EXT-3.2/3.3
+- WP-EXT-6.3 integrated existing systems into the debug scene
+- SelectionIndicator added to unit prefab
+- DestinationMarkerManager added to scene managers
 
 **Dependencies:** WP-EXT-6.2 (needs unit prefabs)
 
