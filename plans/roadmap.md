@@ -41,7 +41,7 @@ Relic is a tabletop AR real-time strategy sandbox for Meta Quest 3.
 
 ## Active Work
 
-**Batch EXT-6: Playable Flat Debug Demo** - ✅ 4/4 Complete
+**Batch EXT-6: Playable Flat Debug Demo** - ✅ 5/5 Complete
 
 | WP | Title | Status | Agent |
 |----|-------|--------|-------|
@@ -49,6 +49,7 @@ Relic is a tabletop AR real-time strategy sandbox for Meta Quest 3.
 | WP-EXT-6.2 | Minimal Viable Units | ✅ Complete (2025-12-29) | Nadia |
 | WP-EXT-6.3 | Selection and Movement System | ✅ Complete (2025-12-29) | Nadia |
 | WP-EXT-6.4 | Unit Spawner UI | ✅ Complete (2025-12-29) | Nadia |
+| WP-EXT-6.5 | Quick Setup Utility | ✅ Complete (2025-12-29) | Nadia |
 
 **Purpose:** Non-AR debug scene for rapid testing without VR headset. Traditional RTS camera + mouse controls.
 

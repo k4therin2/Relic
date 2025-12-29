@@ -48,24 +48,12 @@ Work packages (Batch EXT-6):
 
 ## Feature Backlog
 
-### Quick Setup Utility (One-Click Playable Demo)
-**Status:** ⚪ Backlog
-**Priority:** P2 (suggested)
+### Quick Setup Utility (One-Click Playable Demo) ✅ PROMOTED
+**Status:** ✅ Promoted to WP-EXT-6.5 (2025-12-29)
+**Priority:** P2
 **Source:** Slack #relic-game (2025-12-29, routed by Grace)
-**Original request:** "Quick Setup Utility (one-click playable demo) - New menu command that auto-generates demo scene"
-
-**Description:**
-Create a menu command in Unity Editor that automatically sets up a playable demo scene with:
-- Pre-configured units for both sides
-- Reasonable starting positions
-- Working camera and controls
-- One-click to enter play mode and see action
-
-**Tasks:**
-- [ ] Create Editor menu item (Tools > Relic > Quick Demo Setup)
-- [ ] Auto-instantiate demo scene with units from multiple eras
-- [ ] Position units in combat range for immediate action
-- [ ] Document usage in README or dev docs
+**Promoted by:** Agent-Nadia
+**See:** [active/batch-ext-6.md](active/batch-ext-6.md) → WP-EXT-6.5
 
 ---
 

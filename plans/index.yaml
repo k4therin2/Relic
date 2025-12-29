@@ -1,15 +1,15 @@
 version: '1.0'
-updated: '2025-12-29T01:20:00+00:00'
-updated_by: Agent-Henry
+updated: '2025-12-29T10:00:00+00:00'
+updated_by: Agent-Nadia
 summary:
   total_milestones: 5
   completed_milestones: 3
-  total_wps: 28
-  completed_wps: 23
+  total_wps: 29
+  completed_wps: 24
   in_progress_wps: 0
   blocked_wps: 2
   available_wps: 0
-  notes: "M3 complete, M4 4/6 paused (art assets). Batch EXT-6 (Flat Debug Demo) complete."
+  notes: "M3 complete, M4 4/6 paused (art assets). Batch EXT-6 complete."
 batches:
 - id: EXT-1
   name: Relic - Quick Start Setup
@@ -45,7 +45,7 @@ batches:
   name: Playable Flat Debug Demo
   tag: TESTING INFRASTRUCTURE
   status: complete
-  progress: 4/4
+  progress: 5/5
   file: active/batch-ext-6.md
 milestones:
 - id: M1
@@ -89,6 +89,11 @@ blocked_work:
   priority: P1
   complexity: S
 recent_completions:
+- wp: WP-EXT-6.5
+  title: Quick Setup Utility (One-Click Playable Demo)
+  agent: Nadia
+  date: '2025-12-29'
+  notes: QuickDemoSetup editor utility, one-click demo scene with combat-ready units, 19 tests
 - wp: WP-EXT-6.4
   title: Unit Spawner UI
   agent: Nadia
@@ -175,6 +180,6 @@ project_info:
   unity_version: "6000.3.2f1 (6.3 LTS)"
   unity_license: "Personal (activated 2025-12-27)"
 next_steps:
-  notes: "Batch EXT-6 complete. M4 paused pending art assets from Kyle. Quick Setup Utility added to backlog."
-  priority: P2
-  blocked_by: null
+  notes: "Batch EXT-6 complete. M4 paused pending art assets from Kyle. No available developer work."
+  priority: null
+  blocked_by: Art assets for GPU Instancing (WP-EXT-5.4)

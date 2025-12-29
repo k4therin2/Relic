@@ -194,6 +194,48 @@ Create a flat (non-AR) debug scene for rapid testing and development. This provi
 
 ---
 
+### WP-EXT-6.5: Quick Setup Utility (One-Click Playable Demo)
+**Status:** Complete (2025-12-29)
+**Priority:** P2
+**Complexity:** S
+**Agent:** Nadia
+**Blocked by:** WP-EXT-6.4
+**Source:** Backlog (Slack #relic-game, routed by Grace 2025-12-29)
+
+**Objective:** Create a menu command that auto-generates a playable demo scene with pre-positioned units ready for combat.
+
+**Tasks:**
+1. [x] Create Editor menu item `Relic > Demo > Quick Combat Demo Setup`
+2. [x] Auto-create or load Flat_Debug scene
+3. [x] Spawn 15 units per team in combat positions
+4. [x] Position teams facing each other for immediate action
+5. [x] Verify all managers initialized (SelectionManager, CommandManager, etc.)
+6. [x] Auto-enter Play Mode after setup
+7. [x] Write unit tests for setup utility (19 tests)
+
+**Acceptance Criteria:**
+- [x] Single menu click creates complete playable demo
+- [x] Units from both teams positioned for combat
+- [x] Play Mode entered automatically
+- [x] User can immediately select and command units
+- [x] Works even if no scene was open
+
+**Implementation Notes:**
+- `Relic > Demo > Quick Combat Demo Setup` - Full setup with Play Mode
+- `Relic > Demo > Quick Combat Demo (No Play Mode)` - Setup without Play Mode
+- `Relic > Demo > Validate Demo Setup` - Validates scene components
+- Configurable via `DemoConfig` struct: UnitsPerTeam, spawn positions, spacing
+- 19 unit tests passing for configuration and formation logic
+
+**Files Created:**
+- `Assets/Relic/Scripts/CoreRTS/Editor/QuickDemoSetup.cs`
+- `Assets/Tests/EditMode/QuickDemoSetupTests.cs`
+- Updated `Assets/Tests/EditMode/Relic.Tests.EditMode.asmdef` (added Relic.CoreRTS.Editor reference)
+
+**Dependencies:** WP-EXT-6.4 (needs complete debug scene infrastructure)
+
+---
+
 ## Testing Strategy
 
 All WPs should have both:
