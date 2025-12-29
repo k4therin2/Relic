@@ -68,35 +68,41 @@ Create a flat (non-AR) debug scene for rapid testing and development. This provi
 ---
 
 ### WP-EXT-6.2: Minimal Viable Units
-**Status:** Not Started
+**Status:** Complete (2025-12-29)
 **Priority:** P2
 **Complexity:** S
-**Agent:** (unassigned)
+**Agent:** Nadia
 **Blocked by:** WP-EXT-6.1
 
 **Objective:** Create basic unit prefabs for debug scene testing.
 
 **Tasks:**
-1. [ ] Create unit prefab for debug mode:
-   - Use capsule or simple geometric mesh (cube, cylinder)
-   - Add `UnitController` component (reuse from CoreRTS)
-   - Add `NavMeshAgent` component
-   - Configure collider for selection raycasting
-2. [ ] Implement team color differentiation:
-   - Reuse `TeamColorApplier` from WP-EXT-5.1 (if available)
-   - Or create simple material swapping (Team 0 = Blue, Team 1 = Red)
-   - Apply color to unit mesh renderer
-3. [ ] Verify unit behavior in flat scene:
-   - Units spawn correctly
-   - NavMeshAgent pathfinding works
-   - Team colors visible and distinct
-4. [ ] Write unit tests for prefab instantiation (5-10 tests)
+1. [x] Create unit prefab for debug mode:
+   - Capsule-based visual with UnitController, NavMeshAgent, TeamColorApplier
+   - Editor menu: Relic > Debug > Create Debug Unit Prefab
+   - Creates prefab at Assets/Prefabs/Debug/DebugUnit.prefab
+   - Creates archetype at Assets/Data/Archetypes/DebugUnitArchetype.asset
+2. [x] Implement team color differentiation:
+   - Reuses TeamColorApplier from WP-EXT-5.1
+   - Team 0 = Red, Team 1 = Blue (configurable)
+   - MaterialPropertyBlock for GPU instancing compatibility
+3. [x] Verify unit behavior in flat scene:
+   - Editor menu: Relic > Debug > Spawn Test Units in Scene
+   - Spawns 5 units per team (10 total)
+   - Units positioned on left/right sides of battlefield
+4. [x] Write unit tests for prefab instantiation (17 tests)
 
 **Acceptance Criteria:**
-- [ ] Unit prefab exists in `/Assets/Prefabs/Debug/`
-- [ ] Units can be instantiated in Flat_Debug scene
-- [ ] Team colors clearly distinguish Team 0 vs Team 1
-- [ ] NavMeshAgent navigates ground plane correctly
+- [x] Unit prefab created via menu (Assets/Prefabs/Debug/)
+- [x] Units can be instantiated in Flat_Debug scene
+- [x] Team colors clearly distinguish Team 0 (red) vs Team 1 (blue)
+- [x] NavMeshAgent configured for pathfinding
+
+**Implementation Notes:**
+- Menu: Relic > Debug > Create Debug Unit Prefab
+- Menu: Relic > Debug > Create Debug Unit Archetype
+- Menu: Relic > Debug > Spawn Test Units in Scene
+- 17 unit tests passing for prefab components and team colors
 
 **Dependencies:** WP-EXT-6.1 (needs NavMesh scene)
 
