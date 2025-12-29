@@ -77,6 +77,9 @@ namespace Relic.CoreRTS.Editor
             // Add DestinationMarkerManager for move command visual feedback
             managersGO.AddComponent<DestinationMarkerManager>();
 
+            // Create Spawner UI Canvas
+            CreateSpawnerUI();
+
             // Save scene
             EditorSceneManager.SaveScene(newScene, ScenePath);
 
@@ -129,6 +132,105 @@ namespace Relic.CoreRTS.Editor
             {
                 Debug.LogWarning("[FlatDebugSceneSetup] NavMesh bake failed. Ensure ground is marked Navigation Static.");
             }
+        }
+
+        private static void CreateSpawnerUI()
+        {
+            // Create Canvas
+            GameObject canvasGO = new GameObject("SpawnerCanvas");
+            Canvas canvas = canvasGO.AddComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvasGO.AddComponent<UnityEngine.UI.CanvasScaler>();
+            canvasGO.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+
+            // Add EventSystem if not present
+            if (Object.FindFirstObjectByType<UnityEngine.EventSystems.EventSystem>() == null)
+            {
+                GameObject eventSystemGO = new GameObject("EventSystem");
+                eventSystemGO.AddComponent<UnityEngine.EventSystems.EventSystem>();
+                eventSystemGO.AddComponent<UnityEngine.EventSystems.StandaloneInputModule>();
+            }
+
+            // Create panel in top-left
+            GameObject panelGO = new GameObject("SpawnerPanel");
+            panelGO.transform.SetParent(canvasGO.transform, false);
+            RectTransform panelRect = panelGO.AddComponent<RectTransform>();
+            panelRect.anchorMin = new Vector2(0, 1);
+            panelRect.anchorMax = new Vector2(0, 1);
+            panelRect.pivot = new Vector2(0, 1);
+            panelRect.anchoredPosition = new Vector2(10, -10);
+            panelRect.sizeDelta = new Vector2(200, 150);
+
+            UnityEngine.UI.Image panelBg = panelGO.AddComponent<UnityEngine.UI.Image>();
+            panelBg.color = new Color(0.1f, 0.1f, 0.1f, 0.8f);
+
+            // Add DebugSpawnerUI component
+            DebugSpawnerUI spawnerUI = panelGO.AddComponent<DebugSpawnerUI>();
+
+            // Create buttons
+            UnityEngine.UI.Button spawnTeam0Btn = CreateUIButton(panelGO.transform, "SpawnTeam0Btn", "Spawn Team 0 (Red)", new Vector2(0, -10), new Color(0.8f, 0.2f, 0.2f, 1f));
+            UnityEngine.UI.Button spawnTeam1Btn = CreateUIButton(panelGO.transform, "SpawnTeam1Btn", "Spawn Team 1 (Blue)", new Vector2(0, -50), new Color(0.2f, 0.4f, 0.8f, 1f));
+            UnityEngine.UI.Button clearAllBtn = CreateUIButton(panelGO.transform, "ClearAllBtn", "Clear All", new Vector2(0, -90), new Color(0.4f, 0.4f, 0.4f, 1f));
+
+            // Create unit count text
+            GameObject countTextGO = new GameObject("UnitCountText");
+            countTextGO.transform.SetParent(panelGO.transform, false);
+            RectTransform countRect = countTextGO.AddComponent<RectTransform>();
+            countRect.anchorMin = new Vector2(0.5f, 1);
+            countRect.anchorMax = new Vector2(0.5f, 1);
+            countRect.pivot = new Vector2(0.5f, 1);
+            countRect.anchoredPosition = new Vector2(0, -125);
+            countRect.sizeDelta = new Vector2(180, 20);
+            UnityEngine.UI.Text countText = countTextGO.AddComponent<UnityEngine.UI.Text>();
+            countText.text = "Units: 0";
+            countText.alignment = TextAnchor.MiddleCenter;
+            countText.fontSize = 12;
+            countText.color = Color.white;
+
+            // Assign references to spawner UI using SerializedObject
+            SerializedObject so = new SerializedObject(spawnerUI);
+            so.FindProperty("_spawnTeam0Button").objectReferenceValue = spawnTeam0Btn;
+            so.FindProperty("_spawnTeam1Button").objectReferenceValue = spawnTeam1Btn;
+            so.FindProperty("_clearAllButton").objectReferenceValue = clearAllBtn;
+            so.FindProperty("_unitCountText").objectReferenceValue = countText;
+            so.ApplyModifiedPropertiesWithoutUndo();
+
+            Debug.Log("[FlatDebugSceneSetup] Created Spawner UI Canvas");
+        }
+
+        private static UnityEngine.UI.Button CreateUIButton(Transform parent, string name, string text, Vector2 anchoredPos, Color bgColor)
+        {
+            GameObject btnGO = new GameObject(name);
+            btnGO.transform.SetParent(parent, false);
+
+            RectTransform rect = btnGO.AddComponent<RectTransform>();
+            rect.anchorMin = new Vector2(0.5f, 1);
+            rect.anchorMax = new Vector2(0.5f, 1);
+            rect.pivot = new Vector2(0.5f, 1);
+            rect.anchoredPosition = anchoredPos;
+            rect.sizeDelta = new Vector2(180, 30);
+
+            UnityEngine.UI.Image bg = btnGO.AddComponent<UnityEngine.UI.Image>();
+            bg.color = bgColor;
+
+            UnityEngine.UI.Button btn = btnGO.AddComponent<UnityEngine.UI.Button>();
+            btn.targetGraphic = bg;
+
+            // Add text
+            GameObject textGO = new GameObject("Text");
+            textGO.transform.SetParent(btnGO.transform, false);
+            RectTransform textRect = textGO.AddComponent<RectTransform>();
+            textRect.anchorMin = Vector2.zero;
+            textRect.anchorMax = Vector2.one;
+            textRect.sizeDelta = Vector2.zero;
+
+            UnityEngine.UI.Text btnText = textGO.AddComponent<UnityEngine.UI.Text>();
+            btnText.text = text;
+            btnText.alignment = TextAnchor.MiddleCenter;
+            btnText.fontSize = 14;
+            btnText.color = Color.white;
+
+            return btn;
         }
 
         [MenuItem("Relic/Debug/Open Flat Debug Scene")]

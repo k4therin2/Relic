@@ -149,40 +149,46 @@ Create a flat (non-AR) debug scene for rapid testing and development. This provi
 ---
 
 ### WP-EXT-6.4: Unit Spawner UI
-**Status:** Not Started
+**Status:** Complete (2025-12-29)
 **Priority:** P2
 **Complexity:** S
-**Agent:** (unassigned)
+**Agent:** Nadia
 **Blocked by:** WP-EXT-6.3
 
 **Objective:** Create simple UI for spawning units in debug scene.
 
 **Tasks:**
-1. [ ] Create spawner UI (Screen Space or World Space Canvas):
-   - "Spawn Team 0" button (spawns 5-10 units on left side)
-   - "Spawn Team 1" button (spawns 5-10 units on right side)
-   - "Clear All" button (destroys all units)
-   - Optional: Slider for unit count
-2. [ ] Integrate with `UnitFactory` (from WP-EXT-3.4):
-   - Reuse existing UnitFactory for instantiation
-   - Use UnitPool if available (WP-EXT-5.5)
-   - Define spawn positions (grid or random within bounds)
-3. [ ] Create `DebugSpawnerController`:
+1. [x] Create spawner UI (Screen Space Canvas):
+   - "Spawn Team 0" (red) button spawns 5 units on left side
+   - "Spawn Team 1" (blue) button spawns 5 units on right side
+   - "Clear All" button destroys all units
+   - Unit count display shows current totals
+2. [x] Integrate with `UnitFactory`:
+   - Uses existing UnitFactory for instantiation
+   - Falls back to manual instantiation if factory unavailable
+   - Grid-based spawn with randomization
+3. [x] Created `DebugSpawnerUI` component:
    - Handles button clicks
-   - Spawns units at opposite sides of battlefield
+   - Spawns units at configurable positions
+   - Max units per team (default 20)
    - Clears all units on "Clear All"
-4. [ ] Position spawned units:
-   - Team 0: Left side of scene (X < 0)
-   - Team 1: Right side of scene (X > 0)
-   - Slight randomization to prevent overlap
-5. [ ] Write unit tests for spawner logic (5-10 tests)
+4. [x] Position spawned units:
+   - Team 0: Left side (X = -15)
+   - Team 1: Right side (X = 15)
+   - Grid layout with small random offset
+5. [x] Write unit tests (20 tests)
 
 **Acceptance Criteria:**
-- [ ] UI buttons visible and responsive
-- [ ] "Spawn Team 0" creates 5-10 units on left side
-- [ ] "Spawn Team 1" creates 5-10 units on right side
-- [ ] "Clear All" removes all units from scene
-- [ ] Units spawn without overlapping
+- [x] UI buttons visible and responsive
+- [x] "Spawn Team 0" creates 5 units on left side (configurable)
+- [x] "Spawn Team 1" creates 5 units on right side (configurable)
+- [x] "Clear All" removes all units from scene
+- [x] Units spawn without overlapping (grid + random offset)
+
+**Implementation Notes:**
+- Scene setup automatically creates Spawner Canvas with buttons
+- DebugSpawnerUI component configurable via Inspector
+- 20 unit tests passing for spawner logic
 
 **Dependencies:** WP-EXT-6.3 (needs selection/movement working)
 
