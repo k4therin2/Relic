@@ -41,6 +41,23 @@ Relic is a tabletop AR real-time strategy sandbox for Meta Quest 3.
 
 ## Active Work
 
+**Batch EXT-6: Playable Flat Debug Demo** - 🟡 1/4 Complete
+
+| WP | Title | Status | Agent |
+|----|-------|--------|-------|
+| WP-EXT-6.1 | Flat Debug Scene Setup | ✅ Complete (2025-12-29) | Nadia |
+| WP-EXT-6.2 | Minimal Viable Units | ⚪ Not Started | - |
+| WP-EXT-6.3 | Selection and Movement System | ⚪ Not Started | - |
+| WP-EXT-6.4 | Unit Spawner UI | ⚪ Not Started | - |
+
+**Purpose:** Non-AR debug scene for rapid testing without VR headset. Traditional RTS camera + mouse controls.
+
+See [active/batch-ext-6.md](active/batch-ext-6.md) for full details.
+
+---
+
+## Paused Work
+
 **Batch EXT-5: Milestone 4 - AR UX, Large Battles, and Performance** - 🟡 4/6 Complete
 
 | WP | Title | Status | Agent |
@@ -97,14 +114,17 @@ See [active/batch-ext-2.md](active/batch-ext-2.md) for implementation details.
 
 ---
 
-## Future Work (4 More Milestones)
+## Future Work
 
-1. **M2: RTS Core** - Units, selection, commands (Batch EXT-3)
-2. **M3: Combat** - Weapons, squads, per-bullet mechanics (Batch EXT-4)
-3. **M4: Performance** - Optimization for 100v100 units (Batch EXT-5)
-4. **M5: Polish** - Scenarios, visual polish (optional stretch) (Batch EXT-6)
+**Batch EXT-7: Milestone 5 - Scenarios and Polish** (optional stretch goal)
+
+1. **Scenario System** - Predefined battle setups, win conditions
+2. **Visual Polish** - Effects, animations, audio feedback
+3. **UI Improvements** - Menus, settings, tutorials
 
 See [docs/milestones.md](../docs/milestones.md) for full specification.
+
+**Note:** Batch EXT-6 (Flat Debug Demo) created as immediate priority for testing workflow.
 
 ---
 
@@ -136,5 +156,11 @@ See [docs/milestones.md](../docs/milestones.md) for full specification.
 
 ---
 
+## Recent Updates
+
+**2025-12-28:** Batch EXT-6 (Playable Flat Debug Demo) created by Agent-Henry. 4 work packages for non-AR testing environment with traditional RTS controls. Requested by Kyle via Slack.
+
+---
+
 *This file provides overview only. See index.yaml for machine-readable status.*
-*Last updated: 2025-12-28 by Agent-Nadia - M4 status: 4/6 WPs complete (WP-EXT-5.2 World-Space UI Panel)*
+*Last updated: 2025-12-28 by Agent-Henry - Added Batch EXT-6 (Flat Debug Demo)*

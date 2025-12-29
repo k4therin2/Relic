@@ -1,15 +1,15 @@
 version: '1.0'
-updated: '2025-12-28T16:20:00+00:00'
-updated_by: Agent-Anette
+updated: '2025-12-28T23:50:00+00:00'
+updated_by: Agent-Henry
 summary:
   total_milestones: 5
   completed_milestones: 3
-  total_wps: 24
+  total_wps: 28
   completed_wps: 19
   in_progress_wps: 0
   blocked_wps: 2
-  available_wps: 0
-  notes: "M3 complete, M4 4/6 done. WP-EXT-5.1, 5.2, 5.3, 5.5 complete. WP-EXT-5.4 blocked on art assets, WP-EXT-5.6 blocked on 5.4. No available work."
+  available_wps: 4
+  notes: "M3 complete, M4 4/6 paused (art assets). NEW: Batch EXT-6 (Flat Debug Demo) added - 4 WPs available for immediate start."
 batches:
 - id: EXT-1
   name: Relic - Quick Start Setup
@@ -38,9 +38,15 @@ batches:
 - id: EXT-5
   name: Milestone 4 - AR UX, Large Battles, and Performance
   tag: GAME DEVELOPMENT
-  status: active
+  status: paused
   progress: 4/6
   file: active/batch-ext-5.md
+- id: EXT-6
+  name: Playable Flat Debug Demo
+  tag: TESTING INFRASTRUCTURE
+  status: active
+  progress: 0/4
+  file: active/batch-ext-6.md
 milestones:
 - id: M1
   name: Project and AR Tabletop Foundation
@@ -67,7 +73,35 @@ milestones:
   blocked_by: M4
   progress: 0/2
 current_work: []
-available_work: []
+available_work:
+- wp: WP-EXT-6.1
+  title: Flat Debug Scene Setup
+  batch: EXT-6
+  blocked_by: null
+  priority: P2
+  complexity: S
+  notes: "Analyze existing scripts, create Flat_Debug.unity scene with RTS camera and NavMesh"
+- wp: WP-EXT-6.2
+  title: Minimal Viable Units
+  batch: EXT-6
+  blocked_by: WP-EXT-6.1
+  priority: P2
+  complexity: S
+  notes: "Create unit prefabs with team colors for debug scene"
+- wp: WP-EXT-6.3
+  title: Selection and Movement System
+  batch: EXT-6
+  blocked_by: WP-EXT-6.2
+  priority: P2
+  complexity: M
+  notes: "Mouse-based selection and right-click movement commands"
+- wp: WP-EXT-6.4
+  title: Unit Spawner UI
+  batch: EXT-6
+  blocked_by: WP-EXT-6.3
+  priority: P2
+  complexity: S
+  notes: "UI buttons to spawn 5-10 units per team and clear all"
 blocked_work:
 - wp: WP-EXT-5.4
   title: GPU Instancing and LOD
@@ -149,6 +183,6 @@ project_info:
   unity_version: "6000.3.2f1 (6.3 LTS)"
   unity_license: "Personal (activated 2025-12-27)"
 next_steps:
-  notes: "M4 4/6 complete. WP-EXT-5.4 blocked on art assets from Kyle. WP-EXT-5.6 blocked on 5.4. No developer work available - escalate to Kyle for art assets or Henry for backlog promotion."
-  priority: P1
-  blocked_by: "Art assets from Kyle"
+  notes: "Batch EXT-6 (Flat Debug Demo) added with 4 available WPs. WP-EXT-6.1 (Scene Setup) can start immediately. M4 paused pending art assets from Kyle."
+  priority: P2
+  blocked_by: null
